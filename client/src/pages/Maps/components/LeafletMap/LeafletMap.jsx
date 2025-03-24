@@ -22,7 +22,7 @@ const LeafletMap = () => {
                 <Marker position={[51.505, -0.08]}>
                     <Popup>
                         <h1>Title</h1>
-                        <p>description description description description description description description description description description</p>
+                        <p>description description description description description description description description description description gjfg</p>
                         <button>Start Quiz</button>
                     </Popup>
                 </Marker>
