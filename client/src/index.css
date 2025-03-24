@@ -1,0 +1,103 @@
+/* for using the whole viewport width not adding unnecessary padding and margin */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background: var(--primary-color-1); */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+
+
+
+/* Css variables   */
+:root {
+  --primary-color-1: #152D66;
+  --secondary-color-2: #E59D38;
+  --text-font: "Alexandria";
+  --text-font-weight: 400;
+  --text-font-size: 1.5rem;
+  --heading-font: "Crimson Text";
+  --heading-font-weight: 700;
+  --heading-font-size: 4rem;
+  --paragraph-color: #FFFFFF;
+  --sub-heading-size: 2.6rem;
+  --sub-heading-weight: 400;
+  --sub-heading-font: "Alexandria";
+  --footer-font: "Arial";
+}
+
+
+/* for major heading */
+.heading {
+  font-family: var(--heading-font);
+  font-size: var(--heading-font-size);
+  font-weight: var(--heading-font-weight);
+  color: var(--secondary-color-2);
+}
+
+.sub-heading {
+  font-family: var(--text-font);
+  font-weight: var(--text-font-weight);
+  font-size: var(--sub-heading-size);
+  color: var(--secondary-color-2);
+}
+
+/* for pargraphs all over the project */
+.paragraph {
+  font-family: var(--text-font);
+  font-size: var(--text-font-size);
+  font-weight: var(--text-font-weight);
+  color: var(--paragraph-color);
+}
+
+.btn {
+  border: none;
+  padding: 20px 40px;
+  border-radius: 50px;
+  background-color: var(--secondary-color-2);
+  color: var(--primary-color-1);
+  font-family: var(--text-font);
+  font-size: var(--sub-heading-size);
+  font-weight: var(--heading-font-weight);
+}
+
+@media only screen and (max-width:768px) {
+  .btn{
+    padding: 15px 30px;
+  }
+  
+}
+
+@media only screen and (max-width:500px) {
+  .btn{
+    padding: 10px 20px;
+  }
+  
+}
+@media only screen and (max-width:300px) {
+  .btn{
+    padding: 5px 10px;
+  }
+  
+}

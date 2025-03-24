@@ -1,0 +1,37 @@
+[
+    {
+        "path": "Walifort.png",
+        "title": "Wali’s Fort",
+        "show": "show in Maps"
+    },
+
+    {
+        "path": "MirbatCastel.png",
+        "title": "Mirbat Castle",
+        "show": "show in Maps"
+    },
+
+    {
+        "path": "Tomb.png",
+        "title": "Tomb of Bin Ali",
+        "show": "show in Maps"
+    },
+
+    {
+        "path": "Oldtown.png",
+        "title": "Mirbat Old Town",
+        "show": "show in Maps"
+    },
+
+    {
+        "path": "Mirbatsite.png",
+        "title": "Battle of Mirbat Site",
+        "show": "show in Maps"
+    },
+
+    {
+        "path": "Khorrori.png",
+        "title": "Khor Rori",
+        "show": "show in Maps"
+    }
+]

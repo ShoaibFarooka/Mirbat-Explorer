@@ -1,0 +1,18 @@
+.hero {
+    background-image: url('../../../../assets/images/Mirbatheader.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .content {
+    padding: 0 20px;
+}
+
+.hero .content div {
+    text-align: center;
+}
