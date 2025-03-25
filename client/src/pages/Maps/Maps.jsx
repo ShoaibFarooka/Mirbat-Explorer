@@ -7,9 +7,9 @@ import Map from './components/MapPage/Map';
 const Maps = () => {
   return (
     <>
-    <Navbar />
-    <Map />
-    <Footer />
+      <Navbar />
+      <Map />
+      <Footer />
     </>
   )
 }

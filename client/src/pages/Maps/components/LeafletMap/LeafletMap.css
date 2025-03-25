@@ -14,5 +14,38 @@
 }
 
 .leaflet-map .leaflet-popup-content {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 14px;
+    border-radius: 2px;
+}
+
+.leaflet-map .leaflet-popup-content .popup-heading {
+    margin-bottom: 4px;
+}
+
+.leaflet-map .leaflet-popup-content .paragraph {
+    color: var(--primary-color-1);
+    font-size: 0.75rem;
+    max-width: 333px;
+    margin-top: -4px;
+    text-align: center;
+}
+
+.leaflet-map .leaflet-popup-content .popup-btn {
+    margin-top: 10px;
+}
+
+
+@media only screen and (max-width:768px) {
+    .leaflet-map .leaflet-popup-content {
+        max-width: 350px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .leaflet-map .leaflet-popup-content {
+        max-width: 200px;
+    }
 }

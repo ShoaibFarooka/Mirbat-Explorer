@@ -6,7 +6,6 @@ const Popular = ({ data }) => {
     const { path, title, show } = data;
 
     const getImageUrl = (imageName) => {
-        console.log("Image Name: ", imageName);
         return new URL(`../../../../assets/images/${imageName}`, import.meta.url).href;
     };
 

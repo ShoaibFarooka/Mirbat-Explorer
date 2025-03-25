@@ -1,8 +1,11 @@
 import React from 'react'
 import './Maps.css'
 import maps from '../../../../assets/images/maps-sec.png';
+import { useNavigate } from 'react-router-dom';
 
 const Maps = () => {
+  const navigate = useNavigate();
+
   return (
     <section className='maps'>
 
@@ -13,7 +16,7 @@ const Maps = () => {
 
       <img src={maps} alt="Map-Image" className='map-img' />
 
-      <button className='btn explore-btn'>Explore Maps</button>
+      <button className='btn explore-btn' onClick={() => navigate('Maps')} >Explore Maps</button>
     </section>
   )
 }
