@@ -5,6 +5,8 @@ import LeafletMap from '../LeafletMap/LeafletMap'
 import places from '../../../../data/places.json'
 import Quiz from '../Quiz/Quiz'
 import CustomModal from '../../../../components/CustomModal/CustomModal'
+import Pass from '../Pass/Pass'
+import Failed from '../Failed/Failed'
 const Map = () => {
     const [isOpen, setisOpen] = useState(false);
 
@@ -22,7 +24,9 @@ const Map = () => {
 
             <LeafletMap openModal={openModal} />
             <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={"Quiz"}>
-                <Quiz />
+                {/*  <Quiz /> */}
+                {/*  <Pass /> */}
+                <Failed />
             </CustomModal>
             <div className='heading heading-2'>Popular Locations in Mirbat.</div>
             <div className="places">

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './LeafletMap.css';
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
@@ -6,6 +6,18 @@ import 'leaflet/dist/leaflet.css';
 
 const LeafletMap = ({ openModal }) => {
     const position = [51.505, -0.09];
+    const [zoom, setzoom] = useState(13);
+
+    useEffect(() => {
+        const handleresize = () => {
+            window.innerWidth < 768 ? setzoom(11) : setzoom(13);
+        }
+
+        window.addEventListener("resize", handleresize);
+
+        return () => window.removeEventListener("resize", handleresize);
+    }, [])
+
 
     const locations = [
         [51.505, -0.09],
@@ -17,7 +29,7 @@ const LeafletMap = ({ openModal }) => {
 
     return (
         <div className='leaflet-map'>
-            <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+            <MapContainer center={position} zoom={zoom} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

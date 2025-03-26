@@ -4,6 +4,7 @@
 
 .leaflet-map .leaflet-container {
     width: 100%;
+    max-width: 1348px;
     height: 983px;
     margin-top: 10px;
 }
@@ -39,13 +40,29 @@
 
 
 @media only screen and (max-width:768px) {
+    .leaflet-map .leaflet-container {
+        max-width: 1000px;
+    }
+
     .leaflet-map .leaflet-popup-content {
         max-width: 350px;
     }
+
+    .leaflet-map .leaflet-popup-content .popup-btn {
+        padding: 10px 30px;
+    }
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:523px) {
+    .leaflet-map .leaflet-container {
+        max-width: 700px;
+    }
+
     .leaflet-map .leaflet-popup-content {
         max-width: 200px;
+    }
+
+    .leaflet-map .leaflet-popup-content .popup-btn {
+        padding: 10px 20px;
     }
 }

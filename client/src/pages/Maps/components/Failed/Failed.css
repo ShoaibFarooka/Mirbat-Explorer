@@ -1,0 +1,117 @@
+.fail {
+    width: 100%;
+    max-width: 1303px;
+    padding: 102px 312px 280px 312px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 120.1px 15px #FE0808 inset;
+    background: #FFFFFF;
+    border-radius: 100px;
+}
+
+.fail .heading {
+    color: var(--primary-color-1);
+}
+
+.fail .location {
+    margin-top: 27px;
+    color: var(--primary-color-1);
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: var(--heading-font-size);
+    text-align: center;
+}
+
+.fail .failed {
+    margin-top: 51px;
+    color: var(--primary-color-1);
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: var(--heading-font-size);
+    text-align: center;
+}
+
+.fail .your-score {
+    margin-top: 65px;
+    text-align: center;
+    color: var(--primary-color-1);
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: var(--heading-font-size);
+}
+
+.fail .score {
+    margin-top: 11px;
+    text-align: center;
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 9.375rem;
+    color: red;
+}
+
+.fail .btns {
+    margin-top: 104px;
+    padding: 0 288px;
+    display: flex;
+    gap: 87px;
+}
+
+.fail .btns .btn-1 {
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+.fail .btns .btn-2 {
+    text-wrap: nowrap;
+}
+
+
+@media only screen and (max-width:777px) {
+    .fail {
+        max-width: 700px;
+        padding: 70px 250px 250px 250px;
+        border-radius: 60px;
+        overflow-x: hidden;
+    }
+
+    .fail .btns {
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .fail {
+        max-width: 600px;
+        padding: 50px 150px 100px 150px;
+        border-radius: 40px;
+        overflow-x: hidden;
+    }
+
+    .fail .btns {
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+    }
+}
+
+@media only screen and (max-width:400px) {
+    .fail {
+        max-width: 350px;
+        padding: 50px 150px 100px 150px;
+        border-radius: 40px;
+        overflow-x: hidden;
+    }
+
+    .fail .btns {
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+    }
+}

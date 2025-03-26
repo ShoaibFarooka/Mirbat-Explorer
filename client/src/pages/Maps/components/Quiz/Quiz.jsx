@@ -1,6 +1,10 @@
 import React from 'react'
 import './Quiz.css'
+import Confetti from '../../../../components/Confetti/Confetti'
 const Quiz = () => {
+
+    const handleclick = () => {
+    }
     return (
         <div className='Quiz'>
             <div className='heading h-1'>Quiz</div>
@@ -23,10 +27,11 @@ const Quiz = () => {
                 </div>
 
                 <div className='toggel'>
-                    <button className='previous-btn'></button>
+                    <button className='previous-btn'><span>{`< Previous`}</span></button>
                     <button className='next-btn'>{`Next >`}</button>
                 </div>
             </div>
+            {/*   <Confetti /> */}
         </div>
     )
 }

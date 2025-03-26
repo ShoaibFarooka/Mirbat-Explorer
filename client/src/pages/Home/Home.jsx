@@ -9,12 +9,12 @@ import Hero from './components/Hero/Hero'
 const Home = () => {
   return (
     <>
-    <Navbar />
-    <Hero />
-    <Intro />
-    <Maps />
-    <Quizzes />
-    <Footer />
+      <Navbar />
+      <Hero />
+      <Intro />
+      <Maps />
+      <Quizzes />
+      <Footer />
     </>
   )
 }
