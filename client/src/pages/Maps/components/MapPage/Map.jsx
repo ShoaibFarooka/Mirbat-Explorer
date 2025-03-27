@@ -9,6 +9,8 @@ import Pass from '../Pass/Pass'
 import Failed from '../Failed/Failed'
 const Map = () => {
     const [isOpen, setisOpen] = useState(false);
+    const [score, setscore] = useState(0);
+    const [finished, setfinished] = useState(false);
 
     const openModal = () => {
         setisOpen(true);
@@ -16,6 +18,12 @@ const Map = () => {
 
     const onRequestClose = () => {
         setisOpen(false);
+        setfinished(false);
+    }
+
+    const update = (score) => {
+        setscore(score);
+        setfinished(true);
     }
     return (
         <section className='Map'>
@@ -24,9 +32,15 @@ const Map = () => {
 
             <LeafletMap openModal={openModal} />
             <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={"Quiz"}>
-                {/*  <Quiz /> */}
-                {/*  <Pass /> */}
-                <Failed />
+                {!finished ? (
+                    <Quiz update={update} />
+                ) : (
+                    score > 3 ? (
+                        <Pass score={score} setfinished={setfinished} setisOpen={setisOpen} />
+                    ) : (
+                        <Failed score={score} setfinished={setfinished} setisOpen={setisOpen} />
+                    )
+                )}
             </CustomModal>
             <div className='heading heading-2'>Popular Locations in Mirbat.</div>
             <div className="places">

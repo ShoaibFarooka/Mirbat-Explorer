@@ -1,8 +1,11 @@
 import React, { useRef } from 'react'
 import './Pass.css'
 import Confetti from '../../../../components/Confetti/Confetti'
-const Pass = () => {
+const Pass = ({ score, setfinished, setisOpen }) => {
     const passref = useRef(null);
+    const handleclickdone = () => {
+        setisOpen(false);
+    }
     return (
         <div className='pass' ref={passref} style={{ position: "relative", overflow: "hidden" }}>
             <Confetti parentRef={passref} />
@@ -11,8 +14,8 @@ const Pass = () => {
             <div className='congrats'>Congratulations
                 You have completed the Quiz</div>
             <div className='your-score'>Your Score</div>
-            <div className='score'>10/20</div>
-            <button className='done-btn'>Done</button>
+            <div className='score'>{score}</div>
+            <button className='done-btn' onClick={handleclickdone}>Done</button>
 
         </div>
     )
