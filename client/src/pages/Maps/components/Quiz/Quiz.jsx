@@ -68,14 +68,18 @@ const Quiz = ({ update }) => {
             setscore((prev) => prev + 1);
         }
 
-    }
+    };
+
+    const calculateProgress = () => {
+        return ((index + 1) / quizQuestions.length) * 100 + '%';
+    };
 
     return (
         <div className='Quiz'>
             <div className='heading h-1'>Quiz</div>
             <div className='heading h-2'>Location</div>
             <div className='loading-bar'>
-                <div className='counter'>Question 4/10</div>
+                <div className='counter' style={{ width: calculateProgress() }}>Question {index + 1}/{quizQuestions.length}</div>
             </div>
 
             <div className='timer'>2 minuets 35 seconds left</div>

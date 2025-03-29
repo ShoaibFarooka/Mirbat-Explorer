@@ -31,8 +31,6 @@
 }
 
 .Quiz .counter {
-    display: flex;
-    justify-content: center;
     background-color: var(--secondary-color-2);
     padding: 10px 10px;
     border-radius: 18px;
@@ -40,6 +38,7 @@
     font-weight: var(--heading-font-weight);
     font-size: 2rem;
     color: var(--primary-color-1);
+    transition: width 0.4s ease;
 }
 
 .Quiz .timer {
