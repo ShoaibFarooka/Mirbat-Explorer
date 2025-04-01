@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 
-const LeafletMap = ({ places, openModal }) => {
+const LeafletMap = ({ location, openModal, setselectedplace }) => {
     const position = [51.505, -0.09];
     const [zoom, setzoom] = useState(13);
 
@@ -18,14 +18,10 @@ const LeafletMap = ({ places, openModal }) => {
         return () => window.removeEventListener("resize", handleresize);
     }, [])
 
-
-    const locations = [
-        [51.505, -0.09],
-        [51.515, -0.1],
-        [51.495, -0.08],
-        [51.500, -0.07],
-        [51.510, -0.095],
-    ];
+    const handlestartquiz = (place) => {
+        setselectedplace(place)
+        openModal();
+    }
 
     return (
         <div className='leaflet-map'>
@@ -35,16 +31,17 @@ const LeafletMap = ({ places, openModal }) => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-
                 {
-                    locations.map((pos, index) =>
-                        <Marker key={index} position={pos}>
+                    location.map((place, index) =>
+                    (
+                        <Marker key={index} position={place.directions}>
                             <Popup>
-                                <div className='popup-heading'>Location Name</div>
-                                <div className='paragraph'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt.</div>
-                                <button className='popup-btn' onClick={openModal}>Start Quiz</button>
+                                <div className='popup-heading'>{place.name}</div>
+                                <div className='paragraph'>{place.description}</div>
+                                <button className='popup-btn' onClick={() => handlestartquiz(place)}>Start Quiz</button>
                             </Popup>
                         </Marker>
+                    )
                     )
                 }
             </MapContainer>

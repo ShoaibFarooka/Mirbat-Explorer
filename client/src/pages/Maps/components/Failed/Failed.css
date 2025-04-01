@@ -1,7 +1,7 @@
 .fail {
     width: 100%;
-    max-width: 1303px;
-    padding: 102px 312px 280px 312px;
+    max-width: 1200px;
+    padding: 0 312px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,106 +12,123 @@
 
 .fail .heading {
     color: var(--primary-color-1);
+    font-size: 3rem;
 }
 
 .fail .location {
-    margin-top: 27px;
+    margin-top: 10px;
     color: var(--primary-color-1);
     color: var(--primary-color-1);
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
-    font-size: var(--heading-font-size);
+    font-size: 3rem;
     text-align: center;
 }
 
 .fail .failed {
-    margin-top: 51px;
+    margin-top: 10px;
     color: var(--primary-color-1);
     color: var(--primary-color-1);
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
-    font-size: var(--heading-font-size);
+    font-size: 3rem;
     text-align: center;
+    text-wrap: nowrap;
 }
 
 .fail .your-score {
-    margin-top: 65px;
+    margin-top: 10px;
     text-align: center;
     color: var(--primary-color-1);
     color: var(--primary-color-1);
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
-    font-size: var(--heading-font-size);
+    font-size: 3rem;
 }
 
 .fail .score {
-    margin-top: 11px;
+    margin-top: 10px;
     text-align: center;
     color: var(--primary-color-1);
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
-    font-size: 9.375rem;
+    font-size: 3rem;
     color: red;
 }
 
 .fail .btns {
-    margin-top: 104px;
+    margin-top: -40px;
+    margin-bottom: 10px;
     padding: 0 288px;
     display: flex;
-    gap: 87px;
+    gap: 50px;
 }
 
 .fail .btns .btn-1 {
-    padding-left: 65px;
-    padding-right: 65px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
+    font-size: 1.5rem;
 }
 
 .fail .btns .btn-2 {
+    font-size: 1.5rem;
+    padding: 10px 10px;
     text-wrap: nowrap;
+    color: red;
 }
 
 
-@media only screen and (max-width:777px) {
+@media only screen and (max-width:833px) {
     .fail {
         max-width: 700px;
-        padding: 70px 250px 250px 250px;
+        padding: 0 140px;
         border-radius: 60px;
-        overflow-x: hidden;
     }
+
+    .fail .failed {
+        text-wrap: wrap;
+    }
+
 
     .fail .btns {
         flex-direction: column;
-        align-items: center;
-        gap: 0px;
     }
+
+    .fail .btns .btn-2 {
+        margin-top: -10px;
+    }
+
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:640px) {
     .fail {
         max-width: 600px;
-        padding: 50px 150px 100px 150px;
+        padding: 0 40px;
         border-radius: 40px;
-        overflow-x: hidden;
+    }
+
+    .fail .failed {
+        text-wrap: wrap;
     }
 
     .fail .btns {
         flex-direction: column;
-        align-items: center;
-        gap: 0px;
     }
 }
 
 @media only screen and (max-width:400px) {
     .fail {
         max-width: 350px;
-        padding: 50px 150px 100px 150px;
+        padding: 0 30px;
         border-radius: 40px;
-        overflow-x: hidden;
+    }
+
+    .fail .failed {
+        text-wrap: wrap;
     }
 
     .fail .btns {
         flex-direction: column;
-        align-items: center;
-        gap: 0px;
     }
 }

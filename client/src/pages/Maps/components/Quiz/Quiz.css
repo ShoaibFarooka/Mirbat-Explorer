@@ -7,26 +7,26 @@
     box-shadow: 0px 0px 120.1px 15px #152D66B2 inset;
     border-radius: 100px;
     width: 100%;
-    max-width: 1303px;
+    max-width: 1200px;
 }
 
 .Quiz .h-1 {
-    margin-top: 34px;
     color: var(--primary-color-1);
+    font-size: 3rem;
 }
 
 .Quiz .h-2 {
-    margin-top: 15px;
     color: var(--primary-color-1);
+    font-size: 3rem;
 }
 
 .Quiz .loading-bar {
     display: flex;
     justify-content: flex-start;
-    margin-top: 23px;
+    margin-top: 10px;
     background-color: #D9D9D9;
     width: 100%;
-    max-width: 1144px;
+    max-width: 1100px;
     border-radius: 18px;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .Quiz .timer {
-    margin-top: 36px;
+    margin-top: 15px;
     color: red;
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
@@ -50,8 +50,8 @@
 }
 
 .Quiz .question {
-    margin-top: 43px;
-    margin-bottom: 150px;
+    margin-top: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,32 +65,32 @@
 .Quiz .question-content {
     background-color: #D9D9D9;
     width: 100%;
-    max-width: 1076px;
+    max-width: 1000px;
     display: flex;
     justify-content: flex-start;
     border-radius: 29px;
     padding: 20px 40px;
-    font-size: 2.25rem;
+    font-size: 2rem;
 }
 
 .Quiz .options-div {
-    margin-top: 60px;
+    margin-top: 15px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    row-gap: 32px;
-    column-gap: 161px;
+    row-gap: 20px;
+    column-gap: 2px;
     width: 100%;
-    max-width: 1063px;
+    max-width: 900px;
 }
 
 .Quiz .options {
     border: none;
     text-align: center;
-    padding: 20px 20px;
+    padding: 10px 10px;
     border-radius: 49px;
     width: calc(40% - 20px);
-    max-width: 391px;
+    max-width: 300px;
     font-family: var(--text-font);
     font-weight: var(--text-font-weight);
     font-size: 2rem;
@@ -100,21 +100,24 @@
 
 .Quiz .options:hover {
     cursor: pointer;
+}
+
+.Quiz .selected {
     background-color: var(--secondary-color-2);
 }
 
 .Quiz .toggel {
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1063px;
+    max-width: 890px;
 }
 
 .Quiz .previous-btn {
     padding: 5px 5px;
     width: 100%;
-    max-width: 200px;
+    max-width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,7 +127,7 @@
     background-color: var(--secondary-color-2);
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--primary-color-1);
     transform: rotate(180deg);
     transition: transform 0.3s ease-in-out;
@@ -144,16 +147,14 @@
 .Quiz .next-btn {
     padding: 5px 5px;
     width: 100%;
-    max-width: 200px;
-    display: flex;
-    justify-content: center;
+    max-width: 150px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     border: none;
     background-color: var(--secondary-color-2);
     font-family: var(--heading-font);
     font-weight: var(--heading-font-weight);
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--primary-color-1);
     transition: transform 0.3s ease-in-out;
 }
@@ -163,9 +164,9 @@
     transform: scale(1.1);
 }
 
-@media only screen and (max-width:1320px) {
+@media only screen and (max-width:1226px) {
     .Quiz {
-        padding: 0 20px;
+        padding: 0 50px;
     }
 }
 
@@ -177,17 +178,25 @@
 
     .Quiz .options-div {
         justify-content: center;
+        column-gap: 50px;
     }
 
-    .Quiz .toggel {
-        flex-direction: column;
-        align-items: center;
-        gap: 50px;
-    }
 
     .Quiz .options {
         width: 100%;
-        max-width: 458px;
+        max-width: 250px;
+    }
+
+    .Quiz .toggel {
+        max-width: 500px;
+    }
+}
+
+@media only screen and (max-width:655px) {
+    .Quiz .toggel {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 }
 
@@ -204,6 +213,11 @@
     .Quiz .toggel {
         flex-direction: column;
         align-items: center;
-        gap: 70px;
+        gap: 30px;
+    }
+
+    .Quiz .options {
+        width: 100%;
+        max-width: 200px;
     }
 }

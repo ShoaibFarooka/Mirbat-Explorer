@@ -1,55 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import './Quiz.css'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import './Quiz.css';
+import { message } from 'antd';
+import 'antd/dist/reset.css';
+import Pass from '../Pass/Pass';
+import Failed from '../Failed/Failed';
 
-const quizQuestions = [
-    {
-        id: 1,
-        question: "What is the capital of France?",
-        options: ["Berlin", "Madrid", "Paris", "Rome"],
-        correctAnswer: "Paris"
-    },
-    {
-        id: 2,
-        question: "Which planet is known as the Red Planet?",
-        options: ["Earth", "Mars", "Jupiter", "Venus"],
-        correctAnswer: "Mars"
-    },
-    {
-        id: 3,
-        question: "Who wrote 'Hamlet'?",
-        options: ["Charles Dickens", "William Shakespeare", "J.K. Rowling", "Leo Tolstoy"],
-        correctAnswer: "William Shakespeare"
-    },
-    {
-        id: 4,
-        question: "Which is the largest ocean on Earth?",
-        options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-        correctAnswer: "Pacific Ocean"
-    },
-    {
-        id: 5,
-        question: "What is the chemical symbol for gold?",
-        options: ["Au", "Ag", "Pb", "Fe"],
-        correctAnswer: "Au"
-    }
-];
 
-const Quiz = ({ update }) => {
-
+const Quiz = ({ quiz, setisOpen }) => {
     const [index, setindex] = useState(0);
     const [selected, setselected] = useState({});
     const [score, setscore] = useState(0)
-    const navigate = useNavigate();
+    const [isfinished, setisfinished] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(0);
+    const [isTimeup, setisTimeup] = useState(false);
+
 
     const handleclicknext = () => {
-        if (index < quizQuestions.length - 1) {
-            setindex((previndex) => previndex + 1);
+        if (selected[quiz.questions[index].id] !== undefined) {
+            if (index < quiz.questions.length - 1) {
+                setindex((previndex) => previndex + 1);
+            }
+        } else {
+            message.error("Please select an option!", 1);
         }
     }
 
     const handlefinish = () => {
-        update(score);
+        if (selected[quiz.questions[index].id] === undefined) {
+            message.error("Please select an option!", 1);
+            return;
+        }
+
+        if (index < quiz.questions.length - 1) {
+            handleclicknext();
+        } else {
+            setisfinished(true);
+            setindex(0);
+            setselected({});
+        }
     }
 
     const handleclickprevious = () => {
@@ -57,65 +45,99 @@ const Quiz = ({ update }) => {
     }
 
     const handleclickoption = (questionid, option) => {
-        const newselected =
-        {
+        const prevOption = selected[questionid];
+        const correctAnswer = quiz.questions[index].correctOption;
+
+        setselected({
             ...selected,
-            [questionid]: option
-        }
-        setselected(newselected);
+            [questionid]: option,
+        });
 
-        if (option === quizQuestions[index].correctAnswer) {
-            setscore((prev) => prev + 1);
-        }
+        if (prevOption === correctAnswer) {
 
+            if (option !== correctAnswer) {
+                setscore((prevScore) => prevScore - 1);
+            }
+        } else if (option === correctAnswer) {
+            setscore((prevScore) => prevScore + 1);
+        }
     };
+
 
     const calculateProgress = () => {
-        return ((index + 1) / quizQuestions.length) * 100 + '%';
+        return ((index + 1) / quiz.totalQuestions) * 100 + '%';
     };
 
-    return (
+    const questiontimer = () => {
+        let totaltime = quiz.totalTime;
+        setTimeLeft(totaltime);
+        setisTimeup(true);
+        const interval = setInterval(() => {
+            if (totaltime > 0) {
+                totaltime -= 1;
+                setTimeLeft(totaltime);
+            } else {
+                clearInterval(interval);
+                setisTimeup(false);
+                setisfinished(true);
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
+    };
+
+    useEffect(() => {
+        if (!isTimeup) {
+            questiontimer();
+        }
+    }, [index]);
+
+
+    const formatTime = () => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        return minutes > 0 ? `${minutes} minutes ${seconds < 10 ? '0' + seconds : seconds} seconds` : `${seconds} seconds`;
+    }
+
+    return isfinished ? (
+        score >= quiz.passingMarks ? (
+            <Pass score={score} setscore={setscore} setisfinished={setisfinished} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
+        ) : (
+            <Failed score={score} setscore={setscore} setisfinished={setisfinished} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
+        )
+    ) : (
         <div className='Quiz'>
             <div className='heading h-1'>Quiz</div>
-            <div className='heading h-2'>Location</div>
+            <div className='heading h-2'>{quiz.name}</div>
             <div className='loading-bar'>
-                <div className='counter' style={{ width: calculateProgress() }}>Question {index + 1}/{quizQuestions.length}</div>
+                <div className='counter' style={{ width: calculateProgress() }}> {index + 1}/{quiz.totalQuestions}</div>
             </div>
 
-            <div className='timer'>2 minuets 35 seconds left</div>
+            <div className='timer'>{formatTime()}</div>
+
 
             <div className='question'>
-
-                <div className="question-content">{quizQuestions[index].question}</div>
-
-                <div className='options-div'>
-                    <button className="options" onClick={() => handleclickoption(quizQuestions[index].id, quizQuestions[index].options[0])}>
-                        {quizQuestions[index].options[0]}
-                    </button>
-
-
-                    <button className="options" onClick={() => handleclickoption(quizQuestions[index].id, quizQuestions[index].options[1])}>
-                        {quizQuestions[index].options[1]}
-                    </button>
-
-
-                    <button className="options" onClick={() => handleclickoption(quizQuestions[index].id, quizQuestions[index].options[2])}>
-                        {quizQuestions[index].options[2]}</button>
-
-
-                    <button className="options" onClick={() => handleclickoption(quizQuestions[index].id, quizQuestions[index].options[3])}>
-                        {quizQuestions[index].options[3]}
-                    </button>
-                </div>
-
+                {
+                    <>
+                        <div className="question-content" key={quiz.questions[index].id}>{quiz.questions[index].title}</div>
+                        <div className='options-div'>
+                            {Object.entries(quiz.questions[index].options).map(([key, value]) => (
+                                <button key={key} className={`options ${selected[quiz.questions[index].id] === key ? 'selected' : ''}`}
+                                    onClick={() => handleclickoption(quiz.questions[index].id, key)}
+                                >
+                                    {value}
+                                </button>
+                            ))}
+                        </div>
+                    </>
+                }
 
                 <div className='toggel'>
                     <button className='previous-btn' onClick={handleclickprevious} disabled={index === 0}><span>{`< Previous`}</span></button>
-                    <button className='next-btn' onClick={index === quizQuestions.length - 1 ? handlefinish : handleclicknext} disabled={!selected[quizQuestions[index].id]}>{index === quizQuestions.length - 1 ? `Finish >` : `Next >`}</button>
+                    <button className='next-btn' onClick={handlefinish} > {`Next >`}</button>
                 </div>
             </div>
         </div>
     )
 }
-
 export default Quiz
