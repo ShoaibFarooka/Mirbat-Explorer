@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import './Pass.css'
-import Confetti from '../../../../components/Confetti/Confetti'
+import Confetti from '../../../../../components/Confetti/Confetti'
 const Pass = ({ score, setscore, setisfinished, setisOpen, name, totalQuestions }) => {
     const passref = useRef(null);
     const handleclickdone = () => {

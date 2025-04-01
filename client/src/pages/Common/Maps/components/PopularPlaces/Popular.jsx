@@ -6,7 +6,7 @@ const Popular = ({ data }) => {
     const { path, title, show } = data;
 
     const getImageUrl = (imageName) => {
-        return new URL(`../../../../assets/images/${imageName}`, import.meta.url).href;
+        return new URL(`../../../../../assets/images/${imageName}`, import.meta.url).href;
     };
 
     return (

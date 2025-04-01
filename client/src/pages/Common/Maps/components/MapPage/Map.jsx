@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './Map.css'
-import places from '../../../../data/places.json'
+import places from '../../../../../data/places.json'
 import Popular from '../PopularPlaces/Popular'
 import LeafletMap from '../LeafletMap/LeafletMap'
 import Quiz from '../Quiz/Quiz'
-import CustomModal from '../../../../components/CustomModal/CustomModal'
+import CustomModal from '../../../../../components/CustomModal/CustomModal'
 
 const Map = () => {
     const [isOpen, setisOpen] = useState(false);

@@ -1,6 +1,6 @@
 import React from 'react'
 import './Maps.css'
-import maps from '../../../../assets/images/maps-sec.png';
+import maps from '../../../../../assets/images/maps-sec.png';
 import { useNavigate } from 'react-router-dom';
 
 const Maps = () => {
