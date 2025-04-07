@@ -1,0 +1,92 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .navbar {
+    width: 100%;
+}
+
+.dashboard .h1 {
+    margin-top: 60px;
+}
+
+.dashboard .add-btn {
+    width: 100%;
+    max-width: 1224px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 147px;
+}
+
+.dashboard .add-btn .addplace {
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 1.5rem;
+    color: var(--primary-color-1);
+    background-color: var(--secondary-color-2);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dashboard .add-btn .addplace:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.dashboard .info .heading {
+    font-size: 2rem;
+}
+
+
+.dashboard .info {
+    margin-top: 20px;
+    padding: 0 15px;
+    width: 100%;
+    max-width: 1224px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width:1024px) {
+    .dashboard .info {
+        padding: 0 20px;
+        max-width: 90%;
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .dashboard .info {
+        padding: 0 10px;
+        max-width: 95%;
+        margin-top: 30px;
+    }
+
+    .dashboard .info .heading {
+        font-size: 1.5rem;
+    }
+
+    .dashboard .add-btn {
+        margin: auto;
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .dashboard .add-btn .addplace {
+        padding: 5px 15px;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .dashboard .info {
+        padding: 0 5px;
+        max-width: 100%;
+        margin-top: 30px;
+    }
+}
