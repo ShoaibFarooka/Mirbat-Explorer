@@ -43,16 +43,22 @@
 }
 
 
-@media only screen and (max-width:1024px) {
+
+
+@media only screen and (max-width:770px) {
     .quizinfo {
-        align-items: center;
+        padding: 8px 10px;
+    }
+
+    .quizinfo .quiz-edit-icons img {
+        max-width: 15px;
     }
 }
 
-@media only screen and (max-width:630px) {
+@media only screen and (max-width:500px) {
+
     .quizinfo {
-        padding: 10px 12px;
-        align-items: center;
+        padding: 6px 10px;
     }
 
     .quizinfo .quiz-edit-icons img {
@@ -61,22 +67,6 @@
 
     .quizinfo .quiz-edit-icons {
         gap: 10px;
-    }
-}
-
-@media only screen and (max-width:320px) {
-    .quizinfo {
-        max-width: 100%;
-        padding: 3px 5px;
-        align-items: center;
-    }
-
-    .quizinfo .quiz-edit-icons img {
-        max-width: 5px;
-    }
-
-    .quizinfo .quiz-edit-icons {
-        gap: 5px;
     }
 
 }

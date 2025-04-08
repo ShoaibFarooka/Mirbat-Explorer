@@ -1,6 +1,7 @@
 import React from 'react'
 import './Addplace.css'
-import Quizinfo from './Components/Quizinfo'
+import Quizinfo from './Components/Quizinfo/Quizinfo'
+import Addquiz from './Components/Quizinfo/Addquiz/Addquiz'
 const Addplace = ({ onRequestClose }) => {
     return (
         <div className='add-place'>
@@ -8,7 +9,7 @@ const Addplace = ({ onRequestClose }) => {
             <div className='form'>
                 <label htmlFor="place name" className='label'>Place name</label>
                 <input type="text" name='place name' placeholder='Place name' />
-                <label htmlFor="Description" className='label'>Description</label>
+                <label htmlFor="Description" className='label description'>Description</label>
                 <input type="text" name='Description' placeholder='Description' />
                 <div className='position'>
                     <div className='longitude'>
@@ -41,6 +42,7 @@ const Addplace = ({ onRequestClose }) => {
             <div className='back-btn'>
                 <button className='backbtn' onClick={onRequestClose}>{`< Back`}</button>
             </div>
+            <Addquiz />
         </div>
     )
 }

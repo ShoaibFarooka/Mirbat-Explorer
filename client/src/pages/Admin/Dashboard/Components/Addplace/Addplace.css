@@ -1,7 +1,7 @@
 .add-place {
     display: flex;
     flex-direction: column;
-    padding: 0 293px;
+    padding: 0 137px;
     background: #FFFFFF;
     box-shadow: 0px 0px 120px 15px #152D66B2 inset;
     border-radius: 54px;
@@ -20,28 +20,58 @@
     gap: 10px;
 }
 
-.add-place .label {
+.add-place .form .label {
     font-size: 1.5rem;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
     color: var(--primary-color-1);
     padding-left: 20px;
 }
 
+.add-place .form .description {
+    margin-top: 31px;
+}
+
 .add-place input {
-    width: 100%;
-    max-width: 862px;
     padding: 20px 20px;
     background: #D9D9D9;
     border: none;
     border-radius: 30px;
 }
 
+.add-place input::placeholder {
+    color: var(--primary-color-1);
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: var(--text-font-size);
+}
+
+.add-place input:focus {
+    outline: none;
+}
+
 .add-place .position {
+    margin-top: 18px;
     display: flex;
     gap: 26px;
 }
 
 .add-place .position input {
     margin-top: 10px;
+}
+
+.add-place .position .longitude {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+}
+
+.add-place .position .latitude {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
 }
 
 .add-place .save {
@@ -55,7 +85,7 @@
 .add-place .save .save-btn {
     border: none;
     border-radius: 30px;
-    padding: 10px 30px;
+    padding: 10px 40px;
     font-family: var(--heading-font);
     font-size: 1.5rem;
     font-weight: var(--heading-font-weight);
@@ -88,6 +118,7 @@
     justify-content: space-between;
     text-align: center;
     text-wrap: nowrap;
+    padding: 0 15px;
 }
 
 .quiz-info .heading {
@@ -96,7 +127,7 @@
 
 .quizez-info .add-quiz .addquiz-btn .addquiz {
     font-family: var(--text-font);
-    font-weight: var(--text-font-weight);
+    font-weight: var(--heading-font-weight);
     font-size: 1.5rem;
     color: var(--primary-color-1);
     background-color: var(--secondary-color-2);
@@ -134,58 +165,15 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width:1226px) {
+@media only screen and (max-width:770px) {
     .add-place {
-        padding: 0 100px;
-    }
-
-    .quiz-info {
-        padding: 0 15px;
-        text-align: center;
-    }
-}
-
-@media only screen and (max-width:902px) {
-    .add-place {
-        padding: 0 50px;
-        border-radius: 40px;
-    }
-
-    .add-place input {
-        border-radius: 20px;
-        padding: 15px 15px;
-    }
-
-    .add-place .position {
-        flex-direction: column;
-    }
-
-    .add-place .save .save-btn {
-        padding: 10px 20px;
-    }
-
-    .add-place .back-btn .backbtn {
-        padding: 10px 15px;
-    }
-
-    .quizez-info .add-quiz .addquiz-btn .addquiz {
-        padding: 10px 20px;
-    }
-}
-
-@media only screen and (max-width:778px) {
-    .add-place {
-        padding: 0 30px;
+        padding: 0 70px;
         border-radius: 30px;
     }
 
     .add-place input {
         border-radius: 15px;
         padding: 12px 12px;
-    }
-
-    .add-place .position {
-        flex-direction: column;
     }
 
     .add-place .save .save-btn {
@@ -206,13 +194,18 @@
     }
 }
 
-@media only screen and (max-width:510px) {
+@media only screen and (max-width:500px) {
     .add-place {
-        padding: 0 10px;
+        padding: 0 30px;
         border-radius: 30px;
     }
 
+    .add-place .form .description {
+        margin-top: 10px;
+    }
+
     .add-place .position {
+        margin-top: 10px;
         flex-direction: column;
     }
 
@@ -220,13 +213,10 @@
         padding: 5px 15px;
     }
 
-    .quiz-info {
-        padding: 0 10px;
-    }
-
     .quiz-info .heading {
         font-size: 1rem;
-        text-wrap: nowrap;
+        text-wrap: wrap;
+        text-align: center;
     }
 
     .quizez-info .add-quiz .addquiz-btn .addquiz {
