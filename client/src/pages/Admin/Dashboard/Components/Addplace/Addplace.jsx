@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Addplace.css'
 import Quizinfo from './Components/Quizinfo/Quizinfo'
 import Addquiz from './Components/Quizinfo/Addquiz/Addquiz'
+import { message } from 'antd';
+import 'antd/dist/reset.css';
 const Addplace = ({ onRequestClose }) => {
+    const [show, setshow] = useState(false);
+    const [stylebackbtn, setstylebackbtn] = useState(false);
+
+    const handleclicksave = () => {
+        message.success("Place Added Successfully!", 2);
+    }
+
+    const handleaddquiz = () => {
+        setshow(true);
+    }
+
     return (
         <div className='add-place'>
             <div className="heading">Place Information</div>
@@ -22,12 +35,13 @@ const Addplace = ({ onRequestClose }) => {
                     </div>
                 </div>
             </div>
-            <div className='save'><button className='save-btn'>Save</button></div>
+
+            <div className='save'><button className='save-btn' onClick={handleclicksave}>Save</button></div>
             <div className='quizez-info'>
                 <div className='add-quiz'>
                     <div className='heading'>Quiz</div>
                     <div className='addquiz-btn'>
-                        <button className='addquiz'>Add Quiz</button>
+                        <button className='addquiz' onClick={handleaddquiz}>Add Quiz</button>
                     </div>
                 </div>
                 <div className='quiz-info'>
@@ -39,10 +53,14 @@ const Addplace = ({ onRequestClose }) => {
                 </div>
             </div>
             <Quizinfo />
-            <div className='back-btn'>
+
+            {show && (
+                <Addquiz hidequiz={setshow} setstylebackbtn={setstylebackbtn} />
+            )}
+
+            <div className={!stylebackbtn ? 'back-btn' : 'back-btn-2'}>
                 <button className='backbtn' onClick={onRequestClose}>{`< Back`}</button>
             </div>
-            <Addquiz />
         </div>
     )
 }
