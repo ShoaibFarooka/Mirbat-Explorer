@@ -30,13 +30,13 @@ const AdminLogin = () => {
         message.success("Login successfull!", 1);
     }
     return (
-        <>
+        <div className='admin'>
             <div className='navbar'>
                 <NavLink to='/' className='logo-container'>
                     <img src={logo} alt="Logo" className='logo-img' />
                 </NavLink>
             </div>
-            <div className='admin'>
+            <div className='login'>
                 <div className='heading'>Admin Login</div>
                 <form onSubmit={handlesubmit} className='login-form'>
                     <input type="text" name='username' placeholder='Username' value={formdata.username} onChange={handleinputchnage} />
@@ -44,7 +44,7 @@ const AdminLogin = () => {
                     <button type='submit'>Login</button>
                 </form>
             </div>
-        </>
+        </div>
 
     )
 }

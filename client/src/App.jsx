@@ -9,8 +9,8 @@ const App = () => {
     /*  <div className="App">
        <Router />
      </div> */
-    /*    <AdminLogin /> */
-    <Dashboard />
+    <AdminLogin />
+    /* <Dashboard /> */
   )
 }
 
