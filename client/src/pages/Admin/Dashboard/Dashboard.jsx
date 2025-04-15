@@ -8,6 +8,7 @@ import Addplace from './Components/Addplace/Addplace';
 
 const Dashboard = () => {
     const [isOpen, setisOpen] = useState(false);
+    const [isOpeninfomodal, setisOpeninfomodal] = useState(false);
 
     const handleaddplace = () => {
         setisOpen(true);
@@ -38,7 +39,7 @@ const Dashboard = () => {
                 <div className="heading">Latitude</div>
                 <div className="heading">Action</div>
             </div>
-            <Placeinfo />
+            <Placeinfo isOpen={isOpeninfomodal} setisOpen={setisOpeninfomodal} />
         </div>
     )
 }
