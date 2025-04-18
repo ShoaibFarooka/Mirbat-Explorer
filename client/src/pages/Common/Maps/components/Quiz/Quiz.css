@@ -1,0 +1,223 @@
+.Quiz {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 120.1px 15px #152D66B2 inset;
+    border-radius: 100px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.Quiz .h-1 {
+    color: var(--primary-color-1);
+    font-size: 3rem;
+}
+
+.Quiz .h-2 {
+    color: var(--primary-color-1);
+    font-size: 3rem;
+}
+
+.Quiz .loading-bar {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+    background-color: #D9D9D9;
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 18px;
+}
+
+.Quiz .counter {
+    background-color: var(--secondary-color-2);
+    padding: 10px 10px;
+    border-radius: 18px;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 2rem;
+    color: var(--primary-color-1);
+    transition: width 0.4s ease;
+}
+
+.Quiz .timer {
+    margin-top: 15px;
+    color: red;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 2rem;
+}
+
+.Quiz .question {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1063px;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+}
+
+.Quiz .question-content {
+    background-color: #D9D9D9;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 29px;
+    padding: 20px 40px;
+    font-size: 2rem;
+}
+
+.Quiz .options-div {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 2px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.Quiz .options {
+    border: none;
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 49px;
+    width: calc(40% - 20px);
+    max-width: 300px;
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 2rem;
+    color: var(--primary-color-1);
+    background-color: #D9D9D9;
+}
+
+.Quiz .options:hover {
+    cursor: pointer;
+}
+
+.Quiz .selected {
+    background-color: var(--secondary-color-2);
+}
+
+.Quiz .toggel {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 890px;
+}
+
+.Quiz .previous-btn {
+    padding: 5px 5px;
+    width: 100%;
+    max-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: none;
+    background-color: var(--secondary-color-2);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 1.5rem;
+    color: var(--primary-color-1);
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.Quiz .previous-btn span {
+    transform: rotate(-180deg);
+}
+
+.Quiz .previous-btn:hover {
+    cursor: pointer;
+    transform: rotate(180deg) scale(1.1);
+}
+
+
+
+.Quiz .next-btn {
+    padding: 5px 5px;
+    width: 100%;
+    max-width: 150px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: none;
+    background-color: var(--secondary-color-2);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 1.5rem;
+    color: var(--primary-color-1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.Quiz .next-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width:1226px) {
+    .Quiz {
+        padding: 0 50px;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .Quiz {
+        padding: 0 25px;
+        border-radius: 70px;
+    }
+
+    .Quiz .options-div {
+        justify-content: center;
+        column-gap: 50px;
+    }
+
+
+    .Quiz .options {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .Quiz .toggel {
+        max-width: 500px;
+    }
+}
+
+@media only screen and (max-width:655px) {
+    .Quiz .toggel {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+@media only screen and (max-width:560px) {
+    .Quiz {
+        padding: 0 30px;
+        border-radius: 50px;
+    }
+
+    .Quiz .options-div {
+        justify-content: center;
+    }
+
+    .Quiz .toggel {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .Quiz .options {
+        width: 100%;
+        max-width: 200px;
+    }
+}

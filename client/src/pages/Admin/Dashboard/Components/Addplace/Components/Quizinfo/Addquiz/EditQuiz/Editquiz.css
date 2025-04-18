@@ -1,0 +1,86 @@
+.editquiz {
+    display: flex;
+    flex-direction: column;
+    padding: 0 137px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 120px 15px #152D66B2 inset;
+    border-radius: 54px;
+}
+
+.editquiz .heading {
+    color: var(--primary-color-1);
+    font-size: 1.25rem;
+    margin-top: 48px;
+}
+
+.editquiz label {
+    font-size: 1.5rem;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+    padding-left: 15px;
+}
+
+.editquiz input {
+    padding: 10px 10px;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+}
+
+.editquiz .form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 53px;
+}
+
+.editquiz .form .time-and-marks {
+    display: flex;
+    gap: 27px;
+    margin-top: 15px;
+}
+
+.editquiz .form .time-and-marks .time {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+}
+
+.editquiz .form .time-and-marks .marks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+}
+
+
+@media only screen and (max-width:770px) {
+    .editquiz {
+        padding: 0 100px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .editquiz {
+        padding: 0 50px;
+        border-radius: 30px;
+    }
+
+    .editquiz .form .time-and-marks {
+        flex-direction: column;
+    }
+}
+
+
+@media only screen and (max-width:400px) {
+    .editquiz {
+        padding: 0 30px;
+        border-radius: 30px;
+    }
+
+    .editquiz .form .time-and-marks {
+        flex-direction: column;
+    }
+}

@@ -1,17 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 import './Navbar.css'
 const Navbar = () => {
   return (
     <div className='navbar'>
-      <Link to='/' className='logo-container'>
+      <NavLink to='/' className='logo-container'>
         <img src={logo} alt="Logo" className='logo-img' />
-      </Link>
+      </NavLink>
 
       <div className='nav-list'>
-        <Link to='/' className='nav-link'>Home</Link>
-        <Link to='/maps' className='nav-link'>Map</Link>
+        <NavLink to='/' className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Home</NavLink>
+        <NavLink to='/maps' className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Map</NavLink>
       </div>
     </div>
   )
