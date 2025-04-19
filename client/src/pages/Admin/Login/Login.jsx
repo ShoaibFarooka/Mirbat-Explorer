@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AdminLogin.css';
+import './Login.css';
 import { message } from 'antd';
 import { NavLink } from 'react-router-dom'
 import logo from '../../../assets/images/logo.png'
@@ -39,7 +39,7 @@ const AdminLogin = () => {
             <div className='login'>
                 <div className='heading'>Admin Login</div>
                 <form onSubmit={handlesubmit} className='login-form'>
-                    <input type="text" name='username' placeholder='Username' value={formdata.username} onChange={handleinputchnage} />
+                    <input type="text" name='username' placeholder='Email' value={formdata.username} onChange={handleinputchnage} />
                     <input type='password' name='password' value={formdata.password} placeholder='Password' onChange={handleinputchnage} />
                     <button type='submit'>Login</button>
                 </form>

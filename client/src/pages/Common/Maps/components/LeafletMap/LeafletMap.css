@@ -36,6 +36,11 @@
 
 .leaflet-map .leaflet-popup-content .popup-btn {
     margin-top: 10px;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
 }
 
 

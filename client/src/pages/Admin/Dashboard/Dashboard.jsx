@@ -25,21 +25,25 @@ const Dashboard = () => {
                     <img src={logo} alt="Logo" className='logo-img' />
                 </NavLink>
             </div>
-            <div className="heading h1">Places</div>
-            <div className='add-btn'>
-                <button className='addplace' onClick={handleaddplace}>Add place</button>
+            <div className='content'>
+                <div className="heading h1">Places</div>
+                <div className='add-btn'>
+                    <button className='addplace' onClick={handleaddplace}>Add place</button>
+                </div>
+                <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={"Add Place"}>
+                    <Addplace onRequestClose={onRequestClose} />
+                </CustomModal>
+                <div className='info-container'>
+                    <div className='info'>
+                        <div className="heading">Name</div>
+                        <div className="heading">Description</div>
+                        <div className="heading">Longitude</div>
+                        <div className="heading">Latitude</div>
+                        <div className="heading">Action</div>
+                    </div>
+                    <Placeinfo isOpen={isOpeninfomodal} setisOpen={setisOpeninfomodal} />
+                </div>
             </div>
-            <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={"Add Place"}>
-                <Addplace onRequestClose={onRequestClose} />
-            </CustomModal>
-            <div className='info'>
-                <div className="heading">Name</div>
-                <div className="heading">Description</div>
-                <div className="heading">Longitude</div>
-                <div className="heading">Latitude</div>
-                <div className="heading">Action</div>
-            </div>
-            <Placeinfo isOpen={isOpeninfomodal} setisOpen={setisOpeninfomodal} />
         </div>
     )
 }

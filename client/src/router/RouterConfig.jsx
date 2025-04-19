@@ -1,11 +1,18 @@
-import Home from '../pages/Common/Home//Home.jsx'
-import Maps from '../pages/Common/Maps/Maps.jsx';
-import NotFound from '../pages/Common/NotFound/NotFound.jsx';
+import Home from '../pages/common/Home/Home.jsx'
+import Maps from '../pages/common/Maps/Maps.jsx';
+import Login from '../pages/admin/Login/Login.jsx';
+import Dashboard from '../pages/admin/Dashboard/Dashboard.jsx';
+import NotFound from '../pages/common/NotFound/NotFound.jsx';
 
 const routes = [
-    { path: "/", element: <Home />, protected: false },
-    { path: "/Maps", element: <Maps />, protected: false },
-    { path: "*", element: <NotFound />, protected: false },
+    //admin
+    { path: "/admin/login", element: <Login />, protected: false, authRedirect: true },
+    { path: "/admin/dashboard", element: <Dashboard />, protected: false, authRedirect: true },
+
+    //common
+    { path: "/", element: <Home />, protected: false, authRedirect: false },
+    { path: "/maps", element: <Maps />, protected: false, authRedirect: false },
+    { path: "*", element: <NotFound />, protected: false, authRedirect: false },
 ];
 
 export default routes;
