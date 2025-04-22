@@ -1,9 +1,8 @@
 import React from 'react'
 import './Failed.css'
-const Failed = ({ score, setscore, setisfinished, setisOpen, name, totalQuestions }) => {
+const Failed = ({ score, setisOpen, name, totalQuestions, retry }) => {
     const handleclicktryagain = () => {
-        setisfinished(false);
-        setscore(0);
+        retry();
     }
 
     const handleclcikdone = () => {

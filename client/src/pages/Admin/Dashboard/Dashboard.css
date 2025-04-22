@@ -10,21 +10,32 @@
     width: 100%;
 }
 
+.dashboard .navbar .logout {
+    color: var(--secondary-color-2);
+    text-decoration: none;
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 1.5rem;
+}
+
+.dashboard .navbar .logout:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
 .dashboard .content {
     width: 1224px;
 }
 
 .dashboard .h1 {
+    text-align: center;
     margin-top: 60px;
 }
 
 .dashboard .add-btn {
-    width: 100%;
-    max-width: 1224px;
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
-    margin-right: 147px;
 }
 
 .dashboard .add-btn .addplace {
@@ -44,8 +55,12 @@
     cursor: pointer;
 }
 
-.dashboard .info .heading {
+.dashboard .info-container .info .heading {
     font-size: 2rem;
+}
+
+.dashboard .info-container {
+    margin-bottom: 50px;
 }
 
 
@@ -53,30 +68,28 @@
     margin-top: 20px;
     padding: 0 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 150px;
 }
 
 @media only screen and (max-width:1024px) {
+    .dashboard .content {
+        width: 950px;
+    }
+
     .dashboard .info {
-        padding: 0 20px;
-        margin-top: 30px;
+        gap: 80px;
     }
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
+
+    .dashboard .content {
+        width: 700px;
+    }
+
     .dashboard .info {
-        padding: 0 10px;
-        margin-top: 30px;
-    }
-
-    .dashboard .info .heading {
-        font-size: 1.5rem;
-    }
-
-    .dashboard .add-btn {
-        margin: auto;
-        margin-top: 15px;
-        justify-content: center;
+        gap: 60px;
     }
 
     .dashboard .add-btn .addplace {
@@ -84,9 +97,54 @@
     }
 }
 
-@media only screen and (max-width:320px) {
+@media only screen and (max-width:500px) {
+    .dashboard .content {
+        width: 400px;
+    }
+
     .dashboard .info {
-        padding: 0 5px;
+        gap: 38px;
+    }
+
+    .dashboard .info-container {
         margin-top: 30px;
+    }
+
+    .dashboard .info-container .info .heading {
+        font-size: 1.2rem;
+    }
+
+    .dashboard .add-btn {
+        justify-content: center;
+        margin-top: 25px;
+    }
+
+    .dashboard .add-btn .addplace {
+        padding: 5px 12px;
+    }
+}
+
+
+@media only screen and (max-width:400px) {
+    .dashboard .content {
+        width: 350px;
+    }
+
+    .dashboard .info {
+        gap: 25px;
+    }
+}
+
+@media only screen and (max-width:330px) {
+    .dashboard .content {
+        width: 300px;
+    }
+
+    .dashboard .info {
+        gap: 15px;
+    }
+
+    .dashboard .info-container .info {
+        padding: 0 10px;
     }
 }

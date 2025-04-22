@@ -80,6 +80,8 @@ const Quiz = ({ quiz, setisOpen }) => {
                 clearInterval(interval);
                 setisTimeup(false);
                 setisfinished(true);
+                setindex(0);
+                setselected({});
             }
         }, 1000);
 
@@ -87,10 +89,17 @@ const Quiz = ({ quiz, setisOpen }) => {
     };
 
     useEffect(() => {
-        if (!isTimeup) {
-            questiontimer();
-        }
-    }, [index]);
+        const cleanup = questiontimer();
+        return cleanup;
+    }, [isTimeup]);
+
+    const retry = () => {
+        setisfinished(false);
+        setscore(0);
+        setindex(0);
+        setselected({});
+        setisTimeup(false);
+    }
 
 
     const formatTime = () => {
@@ -103,7 +112,7 @@ const Quiz = ({ quiz, setisOpen }) => {
         score >= quiz.passingMarks ? (
             <Pass score={score} setscore={setscore} setisfinished={setisfinished} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
         ) : (
-            <Failed score={score} setscore={setscore} setisfinished={setisfinished} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
+            <Failed score={score} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} retry={retry} />
         )
     ) : (
         <div className='Quiz'>

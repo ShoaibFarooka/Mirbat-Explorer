@@ -1,3 +1,42 @@
 .add-place .quizinfo-edit {
     margin-bottom: 95px;
 }
+
+.add-place .quizez-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.add-place .quizez-info .quiz-info {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.add-place .quizez-info .quiz-info .heading {
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width:500px) {
+    .add-place .quizez-info .quiz-info .heading {
+        font-size: 1rem;
+    }
+
+    .add-place .h1 {
+        text-align: center;
+    }
+
+    .add-place .quizez-info .quiz-info {
+        padding: 0 10px;
+    }
+}
+
+@media only screen and (max-width:330px) {
+
+    .add-place .quizez-info .quiz-info {
+        padding: 0 5px;
+    }
+}

@@ -1,29 +1,59 @@
 .places-info {
     padding: 12px 14px;
     background: #D9D9D959;
-    width: 100%;
-    max-width: 1224px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
+    gap: 160px;
 }
 
-.places-info .placeholder {
+.places-info .name {
+    width: 100px;
     font-family: var(--text-font);
     font-weight: var(--text-font-weight);
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--secondary-color-2);
 }
 
+.places-info .description {
+    text-align: start;
+    width: 150px;
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 1.5rem;
+    color: var(--secondary-color-2);
+}
+
+.places-info .longitude {
+    text-align: start;
+    width: 100px;
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 1.5rem;
+    color: var(--secondary-color-2);
+}
+
+.places-info .latitude {
+    text-align: center;
+    width: 100px;
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 1.5rem;
+    color: var(--secondary-color-2);
+}
+
+
 .places-info .icons {
     display: flex;
+    justify-content: flex-end;
     gap: 20px;
+    width: 100px;
 }
 
 .places-info .icons img {
-    width: 100%;
-    max-width: 21px;
+    width: 21px;
 }
 
 .places-info .edit-btn {
@@ -45,26 +75,80 @@
 }
 
 
-@media only screen and (max-width:1024px) {
+@media only screen and (max-width:1030px) {
     .places-info {
-        max-width: 90%;
+        gap: 90px;
+        overflow-wrap: break-word;
         align-items: center;
     }
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .places-info {
-        max-width: 95%;
-        padding: 5px 7px;
-        align-items: center;
+        gap: 70px;
+    }
+
+    .places-info .name {
+        width: 70px;
+        text-align: center;
+    }
+
+    .places-info .description {
+        width: 90px;
+    }
+
+    .places-info .longitude {
+        text-align: center;
     }
 
     .places-info .icons img {
-        max-width: 15px;
+        width: 15px;
     }
 
     .places-info .icons {
         gap: 10px;
+        width: 50px;
+    }
+
+}
+
+@media only screen and (max-width:500px) {
+    .places-info {
+        gap: 35px;
+    }
+
+    .places-info .name {
+        width: 50px;
+    }
+
+    .places-info .description {
+        width: 50px;
+    }
+
+    .places-info .longitude {
+        width: 50px;
+    }
+
+    .places-info .latitude {
+        width: 50px;
+    }
+
+    .places-info .icons {
+        width: 50px;
+    }
+
+    .places-info .icons img {
+        width: 13px;
+    }
+}
+
+@media only screen and (max-width:330px) {
+    .places-info {
+        gap: 20px
+    }
+
+    .places-info .name {
+        width: 30px;
     }
 
 }

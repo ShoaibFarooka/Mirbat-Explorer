@@ -16,6 +16,13 @@
     margin-right: 79px;
 }
 
+.admin .login .error {
+    font-family: var(--text-font);
+    font-weight: var(--text-font);
+    color: red;
+    font: 1.5rem;
+}
+
 .admin .login .heading {
     margin-top: 107px;
 }
@@ -37,6 +44,14 @@
     border: none;
     border-radius: 18px;
     outline: none;
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: 1.5rem;
+}
+
+.admin .login .login-form input::placeholder {
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
 }
 
 .admin .login .login-form button {
