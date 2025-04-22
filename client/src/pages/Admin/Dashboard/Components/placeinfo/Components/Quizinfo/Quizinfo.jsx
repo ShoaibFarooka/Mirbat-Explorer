@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Quizinfo.css'
 import edit from '../../../../../../../assets/icons/edit.png'
 import del from '../../../../../../../assets/icons/del.png'
-import Editquiz from './Addquiz/EditQuiz/Editquiz'
+import Editquiz from '../../../PlaceInfo/Components/Addquiz/EditQuiz/Editquiz'
 import CustomModal from '../../../../../../../components/CustomModal/CustomModal'
 const Quizinfo = () => {
     const [isOpenquizinfo, setisOpenquizinfo] = useState(false);

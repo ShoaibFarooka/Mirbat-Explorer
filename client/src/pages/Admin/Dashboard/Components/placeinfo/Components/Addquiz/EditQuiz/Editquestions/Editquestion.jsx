@@ -1,7 +1,7 @@
 import React from 'react'
 import './Editquestion.css'
-import edit from '../../../../../../../../../../assets/icons/edit.png';
-import del from '../../../../../../../../../../assets/icons/del.png';
+import edit from '../../../../../../../../../assets/icons/edit.png';
+import del from '../../../../../../../../../assets/icons/del.png';
 const Editquestion = () => {
     return (
         <div className='editquestion'>

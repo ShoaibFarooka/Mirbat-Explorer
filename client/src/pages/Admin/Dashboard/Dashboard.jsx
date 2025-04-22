@@ -28,6 +28,7 @@ const Dashboard = () => {
         try {
             const payload = {}
             const response = await userService.logoutUser(payload);
+            console.log('Response', response);
             Cookies.remove("mirbat-jwt-token");
             navigate('/admin/login');
         } catch (error) {
@@ -53,10 +54,16 @@ const Dashboard = () => {
         <div className='dashboard'>
             <div className='navbar'>
                 <NavLink to='/' className='logo-container'>
-                    <img src={logo} alt="Logo" className='logo-img' />
+                    <img
+                        src={logo}
+                        alt="Logo"
+                        className='logo-img'
+                    />
                 </NavLink>
 
-                <NavLink className='logout' onClick={handlelogout}>
+                <NavLink
+                    className='logout'
+                    onClick={handlelogout}>
                     Logout
                 </NavLink>
             </div>
@@ -66,8 +73,15 @@ const Dashboard = () => {
                     <button className='addplace' onClick={handleaddplace}>Add place</button>
                 </div>
 
-                <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={"Add Place"}>
-                    <Addplace onRequestClose={onRequestClose} fetchAllPlaces={fetchAllPlaces} />
+                <CustomModal
+                    isOpen={isOpen}
+                    onRequestClose={onRequestClose}
+                    contentLabel={"Add Place"}
+                >
+                    <Addplace
+                        onRequestClose={onRequestClose}
+                        fetchAllPlaces={fetchAllPlaces}
+                    />
                 </CustomModal>
 
                 <div className='info-container'>

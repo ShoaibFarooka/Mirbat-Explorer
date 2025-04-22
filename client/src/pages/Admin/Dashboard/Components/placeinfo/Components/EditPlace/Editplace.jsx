@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { message } from 'antd';
 import 'antd/dist/reset.css';
-import Quizinfo from '../Quizinfo';
+import Quizinfo from '../Quizinfo/Quizinfo'
 import './Editplace.css'
 import { useState } from 'react';
-import placeService from '../../../../../../../../services/placeService';
+import placeService from '../../../../../../../services/placeService';
 import { useNavigate } from 'react-router-dom';
 
-const Editplace = ({ placeData }) => {
+const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
 
     const navigate = useNavigate();
     const [formdata, setformdata] = useState({
@@ -89,6 +89,9 @@ const Editplace = ({ placeData }) => {
         } try {
             const response = await placeService.updatePlace(id, updatedata);
             console.log('response', response);
+            message.success("Place Updated Sucessfully!");
+            onRequestClose();
+            fetchAllPlaces();
             navigate('/admin/dashboard');
         } catch (error) {
             message.error("Error Failed to update!");

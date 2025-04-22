@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import del from '../../../../../assets/icons/del.png';
 import edit from '../../../../../assets/icons/edit.png';
 import { Popconfirm } from 'antd';
 import './PlaceInfo.css'
 import CustomModal from '../../../../../components/CustomModal/CustomModal';
-import Editplace from '../Addplace/Components/Quizinfo/EditPlace/Editplace';
+import Editplace from '../PlaceInfo/Components/EditPlace/Editplace'
 import placeService from '../../../../../services/placeService';
 
 const PlaceInfo = ({ data, fetchAllPlaces }) => {
@@ -41,7 +41,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
                     <img src={edit} alt="" />
                 </button>
                 <CustomModal isOpen={isOpen} onRequestClose={handlecloseinfomodal} contentLabel={"Edit Place"}>
-                    <Editplace placeData={data} />
+                    <Editplace placeData={data} fetchAllPlaces={fetchAllPlaces} onRequestClose={handlecloseinfomodal} />
                 </CustomModal>
                 <Popconfirm
                     title="Delete the task"
