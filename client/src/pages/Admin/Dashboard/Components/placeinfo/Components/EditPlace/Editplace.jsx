@@ -1,15 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { message } from 'antd';
 import 'antd/dist/reset.css';
-import Quizinfo from '../Quizinfo/Quizinfo'
+import Quizinfo from './Components/Quizinfo/Quizinfo'
+import Addquiz from './Components/Addquiz/Addquiz'
 import './Editplace.css'
-import { useState } from 'react';
 import placeService from '../../../../../../../services/placeService';
 import { useNavigate } from 'react-router-dom';
+import quizService from '../../../../../../../services/quizService';
+import CustomModal from '../../../../../../../components/CustomModal/CustomModal';
 
 const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openAddQuizModal = () => {
+        setIsOpen(true);
+    }
+
+    const closeAddQuizModal = () => {
+        setIsOpen(false);
+    }
+
     const navigate = useNavigate();
+
     const [formdata, setformdata] = useState({
         name: placeData?.name || "",
         description: placeData?.description || "",
@@ -99,33 +112,78 @@ const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
         }
     }
 
+    const [quizzez, setQuizzez] = useState([]);
+
+    const fetchAllQuizzez = async () => {
+        try {
+            const response = await quizService.getAllQuizzes(placeData._id);
+            console.log("response", response);
+            setQuizzez(response.quizzes);
+        } catch (error) {
+            console.log("error", error);
+            message.error("Error During Fetching Quizzez...");
+        }
+    }
+
+    useEffect(() => {
+        fetchAllQuizzez();
+    }, [])
+
     return (
         <div className='add-place'>
-            <div className="heading">Place Information</div>
+            <div className="heading h1">Place Information</div>
 
             <div className='form'>
-                <label htmlFor="name" className='label'>Place name</label>
-                <input type="text" name='name' placeholder='Place name' value={formdata.name} onChange={handleonchnage} />
+                <label
+                    htmlFor="name"
+                    className='label'>Place name</label>
+                <input
+                    type="text"
+                    name='name'
+                    placeholder='Place name'
+                    value={formdata.name}
+                    onChange={handleonchnage} />
                 {error.name && <span className='error'>{error.name}</span>}
 
-                <label htmlFor="description" className='label description'>Description</label>
-                <input type="text" name='description' placeholder='Description' value={formdata.description} onChange={handleonchnage} />
+                <label
+                    htmlFor="description"
+                    className='label description'>Description</label>
+                <input
+                    type="text"
+                    name='description'
+                    placeholder='Description'
+                    value={formdata.description}
+                    onChange={handleonchnage} />
                 {error.description && <span className='error'>{error.description}</span>}
 
 
                 <div className='position'>
 
                     <div className='longitude'>
-                        <label htmlFor="longitude" className='label'>Longitude</label>
-                        <input type="number" name='longitude' placeholder='Longitude' value={formdata.longitude} onChange={handleonchnage} />
+                        <label
+                            htmlFor="longitude"
+                            className='label'>Longitude</label>
+                        <input
+                            type="number"
+                            name='longitude'
+                            placeholder='Longitude'
+                            value={formdata.longitude}
+                            onChange={handleonchnage} />
                         {error.longitude && <span className='error'>{error.longitude}</span>}
 
                     </div>
 
                     <div className='latitude'>
 
-                        <label htmlFor="latitude" className='label'>Latitude</label>
-                        <input type="number" name='latitude' placeholder='Latitude' value={formdata.latitude} onChange={handleonchnage} />
+                        <label
+                            htmlFor="latitude"
+                            className='label'>Latitude</label>
+                        <input
+                            type="number"
+                            name='latitude'
+                            placeholder='Latitude'
+                            value={formdata.latitude}
+                            onChange={handleonchnage} />
                         {error.latitude && <span className='error'>{error.latitude}</span>}
 
 
@@ -134,15 +192,28 @@ const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
             </div>
 
             <div className='save'>
-                <button className='save-btn' onClick={() => handleUpdatePlace(placeData._id, formdata)}>Save</button>
+                <button
+                    className='save-btn'
+                    onClick={() => handleUpdatePlace(placeData._id, formdata)}>Save
+                </button>
             </div>
 
             <div className='quizez-info'>
-                <div className='heading h1'>Quiz</div>
+                <div className='heading quiz-heading'>
+                    Quiz
+                    <button
+                        className='add-quiz-btn'
+                        onClick={openAddQuizModal}>
+                        Add Quiz
+                    </button>
+                </div>
+
+                <CustomModal isOpen={isOpen} onRequestClose={closeAddQuizModal} contentLabel={"Add Quiz"}>
+                    <Addquiz closeAddQuizModal={closeAddQuizModal} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} />
+                </CustomModal>
 
                 <div className='quiz-info'>
                     <div className="heading">Title</div>
-                    <div className="heading">Total <br />Questions</div>
                     <div className="heading">Total <br />Time</div>
                     <div className="heading">Passing <br /> Marks</div>
                     <div className="heading">Action</div>
@@ -150,7 +221,16 @@ const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
             </div>
 
             <div className='quizinfo-edit'>
-                <Quizinfo />
+                {
+                    quizzez.map((quizData, index) =>
+                        <Quizinfo
+                            key={index}
+                            quizData={quizData}
+                            placeData={placeData}
+                            fetchAllQuizzez={fetchAllQuizzez}
+                        />
+                    )
+                }
             </div>
         </div>
     )

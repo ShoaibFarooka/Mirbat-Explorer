@@ -7,6 +7,28 @@
     flex-direction: column;
 }
 
+.add-place .add-quiz {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-place .quizez-info .quiz-heading .add-quiz-btn {
+    border: none;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+    background-color: var(--secondary-color-2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.add-place .quizez-info .quiz-heading .add-quiz-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 
 .add-place .quizez-info .quiz-info {
     display: flex;
@@ -20,9 +42,18 @@
     font-size: 1.5rem;
 }
 
+.add-place .quizez-info .quiz-heading {
+    font-size: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 @media only screen and (max-width:500px) {
-    .add-place .quizez-info .quiz-info .heading {
-        font-size: 1rem;
+    .add-place .quizez-info .quiz-heading {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
     }
 
     .add-place .h1 {
@@ -32,11 +63,8 @@
     .add-place .quizez-info .quiz-info {
         padding: 0 10px;
     }
-}
 
-@media only screen and (max-width:330px) {
-
-    .add-place .quizez-info .quiz-info {
-        padding: 0 5px;
+    .add-place .quizez-info .quiz-heading .add-quiz-btn {
+        padding: 10px 15px;
     }
 }

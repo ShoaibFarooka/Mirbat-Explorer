@@ -6,7 +6,6 @@
     align-items: center;
     border-radius: 10px;
     margin-top: 10px;
-    margin-bottom: 78px;
 }
 
 .editquestion .question-placeholder {
@@ -43,7 +42,7 @@
     border: none;
 }
 
-.editquestion .question-delete-btn .question-delete-btn:hover {
+.editquestion .question-edit-icons .question-delete-btn:hover {
     cursor: pointer;
 }
 

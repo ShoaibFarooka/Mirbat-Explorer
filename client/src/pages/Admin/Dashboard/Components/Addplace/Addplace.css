@@ -132,10 +132,10 @@
 
 }
 
-@media only screen and (max-width:500px) {
+
+@media only screen and (max-width:620px) {
     .add-place {
         padding: 0 15px;
-        border-radius: 30px;
     }
 
 
@@ -158,6 +158,13 @@
 
     .add-place .save .save-btn {
         padding: 10px 30px;
+    }
+
+}
+
+@media only screen and (max-width:400px) {
+    .add-place {
+        border-radius: 20px;
     }
 
 }
