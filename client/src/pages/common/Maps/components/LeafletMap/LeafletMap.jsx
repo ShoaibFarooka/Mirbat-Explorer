@@ -4,22 +4,22 @@ import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 
-const LeafletMap = ({ location, openModal, setselectedplace }) => {
+const LeafletMap = ({ location, openModal, setSelectedPlace }) => {
     const position = [51.505, -0.09];
     const [zoom, setzoom] = useState(13);
 
     useEffect(() => {
-        const handleresize = () => {
+        const handleResize = () => {
             window.innerWidth < 768 ? setzoom(11) : setzoom(13);
         }
 
-        window.addEventListener("resize", handleresize);
+        window.addEventListener("resize", handleResize);
 
-        return () => window.removeEventListener("resize", handleresize);
+        return () => window.removeEventListener("resize", handleResize);
     }, [])
 
-    const handlestartquiz = (place) => {
-        setselectedplace(place)
+    const handleStartQuiz = (place) => {
+        setSelectedPlace(place)
         openModal();
     }
 
@@ -38,7 +38,7 @@ const LeafletMap = ({ location, openModal, setselectedplace }) => {
                             <Popup>
                                 <div className='popup-heading'>{place.name}</div>
                                 <div className='paragraph'>{place.description}</div>
-                                <button className='popup-btn' onClick={() => handlestartquiz(place)}>Start Quiz</button>
+                                <button className='popup-btn' onClick={() => handleStartQuiz(place)}>Start Quiz</button>
                             </Popup>
                         </Marker>
                     )

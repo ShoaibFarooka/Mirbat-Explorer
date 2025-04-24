@@ -1,53 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import './Quiz.css';
 import { message } from 'antd';
-// import 'antd/dist/reset.css';
 import Pass from '../Pass/Pass';
 import Failed from '../Failed/Failed';
 
-const Quiz = ({ quiz, setisOpen }) => {
-    const [index, setindex] = useState(0);
-    const [selected, setselected] = useState({});
-    const [score, setscore] = useState(0)
-    const [isfinished, setisfinished] = useState(false);
+const Quiz = ({ quiz, setIsOpen }) => {
+    const [index, setIndex] = useState(0);
+    const [selected, setSelected] = useState({});
+    const [score, setScore] = useState(0)
+    const [isFinished, setIsFinished] = useState(false);
     const [timeLeft, setTimeLeft] = useState(0);
-    const [isTimeup, setisTimeup] = useState(false);
+    const [isTimeUp, setIsTimeUp] = useState(false);
 
 
-    const handleclicknext = () => {
+    const handleClickNext = () => {
         if (selected[quiz.questions[index].id] !== undefined) {
             if (index < quiz.questions.length - 1) {
-                setindex((previndex) => previndex + 1);
+                setIndex((previndex) => previndex + 1);
             }
         } else {
             message.error("Please select an option!", 1);
         }
     }
 
-    const handlefinish = () => {
+    const handleFinish = () => {
         if (selected[quiz.questions[index].id] === undefined) {
             message.error("Please select an option!", 1);
             return;
         }
 
         if (index < quiz.questions.length - 1) {
-            handleclicknext();
+            handleClickNext();
         } else {
-            setisfinished(true);
-            setindex(0);
-            setselected({});
+            setIsFinished(true);
+            setIndex(0);
+            setSelected({});
         }
     }
 
-    const handleclickprevious = () => {
-        setindex((previndex) => previndex - 1);
+    const handleClickPrevious = () => {
+        setIndex((previndex) => previndex - 1);
     }
 
     const handleclickoption = (questionid, option) => {
         const prevOption = selected[questionid];
         const correctAnswer = quiz.questions[index].correctOption;
 
-        setselected({
+        setSelected({
             ...selected,
             [questionid]: option,
         });
@@ -55,10 +54,10 @@ const Quiz = ({ quiz, setisOpen }) => {
         if (prevOption === correctAnswer) {
 
             if (option !== correctAnswer) {
-                setscore((prevScore) => prevScore - 1);
+                setScore((prevScore) => prevScore - 1);
             }
         } else if (option === correctAnswer) {
-            setscore((prevScore) => prevScore + 1);
+            setScore((prevScore) => prevScore + 1);
         }
     };
 
@@ -67,20 +66,20 @@ const Quiz = ({ quiz, setisOpen }) => {
         return ((index + 1) / quiz.totalQuestions) * 100 + '%';
     };
 
-    const questiontimer = () => {
-        let totaltime = quiz.totalTime;
-        setTimeLeft(totaltime);
-        setisTimeup(true);
+    const questionTimer = () => {
+        let totalTime = quiz.totalTime;
+        setTimeLeft(totalTime);
+        setIsTimeUp(true);
         const interval = setInterval(() => {
-            if (totaltime > 0) {
-                totaltime -= 1;
-                setTimeLeft(totaltime);
+            if (totalTime > 0) {
+                totalTime -= 1;
+                setTimeLeft(totalTime);
             } else {
                 clearInterval(interval);
-                setisTimeup(false);
-                setisfinished(true);
-                setindex(0);
-                setselected({});
+                setIsTimeUp(false);
+                setIsFinished(true);
+                setIndex(0);
+                setSelected({});
             }
         }, 1000);
 
@@ -88,16 +87,16 @@ const Quiz = ({ quiz, setisOpen }) => {
     };
 
     useEffect(() => {
-        const cleanup = questiontimer();
+        const cleanup = questionTimer();
         return cleanup;
-    }, [isTimeup]);
+    }, [isTimeUp]);
 
     const retry = () => {
-        setisfinished(false);
-        setscore(0);
-        setindex(0);
-        setselected({});
-        setisTimeup(false);
+        setIsFinished(false);
+        setScore(0);
+        setIndex(0);
+        setSelected({});
+        setIsTimeUp(false);
     }
 
 
@@ -107,11 +106,11 @@ const Quiz = ({ quiz, setisOpen }) => {
         return minutes > 0 ? `${minutes} minutes ${seconds < 10 ? '0' + seconds : seconds} seconds` : `${seconds} seconds`;
     }
 
-    return isfinished ? (
+    return isFinished ? (
         score >= quiz.passingMarks ? (
-            <Pass score={score} setscore={setscore} setisfinished={setisfinished} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
+            <Pass score={score} setScore={setScore} setIsFinished={setIsFinished} setIsOpen={setIsOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
         ) : (
-            <Failed score={score} setisOpen={setisOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} retry={retry} />
+            <Failed score={score} setIsOpen={setIsOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} retry={retry} />
         )
     ) : (
         <div className='Quiz'>
@@ -141,8 +140,8 @@ const Quiz = ({ quiz, setisOpen }) => {
                 }
 
                 <div className='toggel'>
-                    <button className='previous-btn' onClick={handleclickprevious} disabled={index === 0}><span>{`< Previous`}</span></button>
-                    <button className='next-btn' onClick={handlefinish} > {`Next >`}</button>
+                    <button className='previous-btn' onClick={handleClickPrevious} disabled={index === 0}><span>{`< Previous`}</span></button>
+                    <button className='next-btn' onClick={handleFinish} > {`Next >`}</button>
                 </div>
             </div>
         </div>

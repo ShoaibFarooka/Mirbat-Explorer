@@ -7,9 +7,10 @@ import Quiz from '../Quiz/Quiz'
 import CustomModal from '../../../../../components/CustomModal/CustomModal'
 
 const Map = () => {
-    const [isOpen, setisOpen] = useState(false);
-    const [location, setlocation] = useState([]);
-    const [selectedplace, setselectedplace] = useState(null);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [location, setLocation] = useState([]);
+    const [selectedPlace, setSelectedPlace] = useState(null);
 
     const staticPlaces = [
         {
@@ -221,26 +222,26 @@ const Map = () => {
 
     useEffect(() => {
         //get data from an api
-        setlocation(staticPlaces);
+        setLocation(staticPlaces);
     }, []);
 
     const openModal = () => {
-        setisOpen(true);
+        setIsOpen(true);
     }
 
     const onRequestClose = () => {
-        setisOpen(false);
+        setIsOpen(false);
     }
     return (
         <section className='Map'>
             <div className='heading'>Maps</div>
             <div className='paragraph'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 
-            <LeafletMap location={location} openModal={openModal} setselectedplace={setselectedplace} />
+            <LeafletMap location={location} openModal={openModal} setSelectedPlace={setSelectedPlace} />
 
             <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel={"Quiz"}>
-                {selectedplace && selectedplace.quiz ? (
-                    <Quiz quiz={{ ...selectedplace.quiz, name: selectedplace.name }} setisOpen={setisOpen} />
+                {selectedPlace && selectedPlace.quiz ? (
+                    <Quiz quiz={{ ...selectedPlace.quiz, name: selectedPlace.name }} setIsOpen={setIsOpen} />
                 ) : (
                     <p>Loading quiz...</p>
                 )}
