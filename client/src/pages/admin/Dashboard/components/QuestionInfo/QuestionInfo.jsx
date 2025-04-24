@@ -8,15 +8,15 @@ import CustomModal from '../../../../../components/CustomModal/CustomModal';
 import Editquestion from '../EditQuestion/EditQuestion';
 
 
-const QuestionInfo = ({ questionsdata, quizData, fetchAllQuestions }) => {
+const QuestionInfo = ({ questionsData, quizData, fetchAllQuestions }) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleopenEditQuestion = () => {
+    const handleOpenEditQuestion = () => {
         setIsOpen(true);
     }
 
-    const handlecloseEditquestion = () => {
+    const handleCloseEditQuestion = () => {
         setIsOpen(false);
     }
 
@@ -35,28 +35,28 @@ const QuestionInfo = ({ questionsdata, quizData, fetchAllQuestions }) => {
 
     return (
         <div className='editquestion'>
-            <div className="question-placeholder">{questionsdata.questionText}</div>
+            <div className="question-placeholder">{questionsData.questionText}</div>
             <div className="question-edit-icons">
-                <button className='question-edit-btn' onClick={handleopenEditQuestion}>
+                <button className='question-edit-btn' onClick={handleOpenEditQuestion}>
                     <img src={edit} alt="" />
                 </button>
 
                 <CustomModal
                     isOpen={isOpen}
-                    onRequestClose={handlecloseEditquestion}
+                    onRequestClose={handleCloseEditQuestion}
                     contentLabel={"Edit Question"}
                 >
                     <Editquestion
-                        questionsdata={questionsdata}
+                        questionsData={questionsData}
                         quizData={quizData}
                         fetchAllQuestions={fetchAllQuestions}
-                        closeEditquestion={handlecloseEditquestion} />
+                        closeEditquestion={handleCloseEditQuestion} />
                 </CustomModal>
 
                 <Popconfirm
                     title="Delete the task"
                     description="Are you sure to delete this task?"
-                    onConfirm={() => handelDeleteQuestion(quizData._id, questionsdata._id)}
+                    onConfirm={() => handelDeleteQuestion(quizData._id, questionsData._id)}
                     onCancel={() => { }}
                     okText="Yes"
                     cancelText="No"

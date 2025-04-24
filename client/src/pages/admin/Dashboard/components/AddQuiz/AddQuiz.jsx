@@ -11,7 +11,7 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
         passingMarks: ""
     })
 
-    const [Error, setError] = useState({
+    const [error, setError] = useState({
         title: "",
         time: "",
         passingMarks: ""
@@ -25,36 +25,36 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
     }
 
     const validatedata = () => {
-        let newerrors = {};
-        let haserrors = false;
+        let newErrors = {};
+        let hasErrors = false;
         if (formData.title.trim() === "") {
-            newerrors.title = "Title is mandatory!";
-            haserrors = true;
+            newErrors.title = "Title is mandatory!";
+            hasErrors = true;
         } else {
-            newerrors.title = ""
+            newErrors.title = ""
         }
         if (formData.time.trim() === "" || formData.time === null || formData.time === undefined) {
-            newerrors.time = "Time is mandatory!";
-            haserrors = true;
+            newErrors.time = "Time is mandatory!";
+            hasErrors = true;
         } else if (isNaN(formData.time)) {
-            newerrors.time = "Time must be a valid number";
-            haserrors = true;
+            newErrors.time = "Time must be a valid number";
+            hasErrors = true;
         }
         else {
-            newerrors.time = ""
+            newErrors.time = ""
         }
         if (formData.passingMarks.trim() === "" || formData.passingMarks === null || formData.passingMarks === undefined) {
-            newerrors.passingMarks = "PassingMarks are mandatory!";
-            haserrors = true;
+            newErrors.passingMarks = "PassingMarks are mandatory!";
+            hasErrors = true;
         } else if (isNaN(formData.passingMarks)) {
-            newerrors.passingMarks = "PassingMarks must be a valid number";
-            haserrors = true;
+            newErrors.passingMarks = "PassingMarks must be a valid number";
+            hasErrors = true;
         }
         else {
-            newerrors.passingMarks = "";
+            newErrors.passingMarks = "";
         }
-        setError((prev) => ({ ...prev, ...newerrors }));
-        return !haserrors;
+        setError((prev) => ({ ...prev, ...newErrors }));
+        return !hasErrors;
     }
 
     const handleClickSave = async () => {
@@ -69,7 +69,7 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
             closeAddQuizModal();
         } catch (error) {
             console.log("error", error);
-            message.error("Error failed to add quiz! ");
+            message.error("error failed to add quiz! ");
         }
     }
     return (
@@ -80,19 +80,19 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
 
                 <label htmlFor="title">Title</label>
                 <input type="text" name='title' placeholder='Title' onChange={handleInputChnage} />
-                {Error.title && <span className='error'>{Error.title}</span>}
+                {error.title && <span className='error'>{error.title}</span>}
 
                 <div className='time-and-marks'>
                     <div className='time'>
                         <label htmlFor="time">Total Time</label>
                         <input type="number" name='time' placeholder='Time' onChange={handleInputChnage} />
-                        {Error.time && <span className='error'>{Error.time}</span>}
+                        {error.time && <span className='error'>{error.time}</span>}
                     </div>
 
                     <div className='marks'>
                         <label htmlFor="passingMarks">Passing Marks</label>
                         <input type="number" name='passingMarks' placeholder='PassingMarks' onChange={handleInputChnage} />
-                        {Error.passingMarks && <span className='error'>{Error.passingMarks}</span>}
+                        {error.passingMarks && <span className='error'>{error.passingMarks}</span>}
                     </div>
                 </div>
 

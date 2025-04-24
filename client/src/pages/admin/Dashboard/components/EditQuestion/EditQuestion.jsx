@@ -2,19 +2,19 @@ import React, { useState } from 'react'
 import './EditQuestion.css'
 import { message, Select } from 'antd'
 import questionService from '../../../../../services/questionService';
-const EditQuestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQuestions, }) => {
+const EditQuestion = ({ questionsData, quizData, handleCloseEditQuestion, fetchAllQuestions, }) => {
 
     const { Option } = Select;
 
     const [formData, setFormData] = useState({
-        questionText: questionsdata?.questionText || "",
+        questionText: questionsData?.questionText || "",
         options: {
-            A: questionsdata?.options?.A || "",
-            B: questionsdata?.options?.B || "",
-            C: questionsdata?.options?.C || "",
-            D: questionsdata?.options?.D || ""
+            A: questionsData?.options?.A || "",
+            B: questionsData?.options?.B || "",
+            C: questionsData?.options?.C || "",
+            D: questionsData?.options?.D || ""
         },
-        correctOption: questionsdata?.correctOption || ""
+        correctOption: questionsData?.correctOption || ""
     })
 
     const [Error, setError] = useState({
@@ -28,7 +28,7 @@ const EditQuestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQues
         correctOption: ""
     })
 
-    const handleInputChnage = (e) => {
+    const handleOnChange = (e) => {
         const { name, value } = e.target;
 
         if (name.startsWith("option_")) {
@@ -56,35 +56,35 @@ const EditQuestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQues
     }
 
     const validateData = () => {
-        let newerrors = {
+        let newErrors = {
             options: {}
         }
-        let haserrros = false;
+        let hasErrors = false;
 
         if (formData.questionText.trim() === "") {
-            newerrors.questionText = "Please write the question!";
-            haserrros = false;
+            newErrors.questionText = "Please write the question!";
+            hasErrors = false;
         } else {
-            newerrors.questionText = "";
+            newErrors.questionText = "";
         }
         for (let key of ["A", "B", "C", "D"]) {
             if (!formData.options[key].trim()) {
-                newerrors.options[key] = `Option ${key} is required!`;
-                haserrros = true;
+                newErrors.options[key] = `Option ${key} is required!`;
+                hasErrors = true;
             } else {
-                newerrors.options[key] = "";
+                newErrors.options[key] = "";
             }
         }
 
         if (!formData.correctOption) {
-            newerrors.correctOption = "Please select a correct option!";
-            haserrros = true;
+            newErrors.correctOption = "Please select a correct option!";
+            hasErrors = true;
         } else {
-            newerrors.correctOption = "";
+            newErrors.correctOption = "";
         }
 
-        setError(newerrors);
-        return !haserrros;
+        setError(newErrors);
+        return !hasErrors;
 
     }
 
@@ -92,11 +92,11 @@ const EditQuestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQues
         if (!validateData()) {
             return;
         } try {
-            const response = await questionService.updateQuestion(quizData._id, questionsdata._id, formData);
+            const response = await questionService.updateQuestion(quizData._id, questionsData._id, formData);
             console.log("response", response);
             message.success("Question updated successfully!");
             fetchAllQuestions();
-            closeEditquestion();
+            handleCloseEditQuestion();
         } catch (error) {
             console.log("error", error);
             message.error("Error Failed to update question!");
@@ -111,27 +111,27 @@ const EditQuestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQues
 
             <div className='form'>
                 <label htmlFor="questionText">Question</label>
-                <input type="text" name='questionText' placeholder='Question Here' value={formData.questionText} onChange={handleInputChnage} />
+                <input type="text" name='questionText' placeholder='Question Here' value={formData.questionText} onChange={handleOnChange} />
                 {Error.questionText && <span className='error'>{Error.questionText}</span>}
 
                 <div className='options'>
                     <div className='container-1'>
                         <label htmlFor="option_A" className='optionA'>Option A</label>
-                        <input type="text" name='option_A' placeholder='Option A' value={formData.options.A} onChange={handleInputChnage} />
+                        <input type="text" name='option_A' placeholder='Option A' value={formData.options.A} onChange={handleOnChange} />
                         {Error.options.A && <span className='error'>{Error.options.A}</span>}
 
                         <label htmlFor="option_B" className='optionB'>Option B</label>
-                        <input type="text" name='option_B' placeholder='Option B' value={formData.options.B} onChange={handleInputChnage} />
+                        <input type="text" name='option_B' placeholder='Option B' value={formData.options.B} onChange={handleOnChange} />
                         {Error.options.B && <span className='error'>{Error.options.B}</span>}
                     </div>
 
                     <div className='container-2'>
                         <label htmlFor="option_C" className='optionC'>Option C</label>
-                        <input type="text" name='option_C' placeholder='Option C' value={formData.options.C} onChange={handleInputChnage} />
+                        <input type="text" name='option_C' placeholder='Option C' value={formData.options.C} onChange={handleOnChange} />
                         {Error.options.C && <span className='error'>{Error.options.C}</span>}
 
                         <label htmlFor="option_D" className='optionD'>Option D</label>
-                        <input type="text" name='option_D' placeholder='Option D' value={formData.options.D} onChange={handleInputChnage} />
+                        <input type="text" name='option_D' placeholder='Option D' value={formData.options.D} onChange={handleOnChange} />
                         {Error.options.D && <span className='error'>{Error.options.D}</span>}
                     </div>
                 </div>

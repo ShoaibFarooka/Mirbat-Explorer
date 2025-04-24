@@ -11,20 +11,20 @@ import { message } from 'antd';
 import placeService from '../../../services/placeService';
 
 const Dashboard = () => {
-    const [isOpen, setisOpen] = useState(false);
-    const [places, setplaces] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [places, setPlaces] = useState([]);
 
-    const handleaddplace = () => {
-        setisOpen(true);
+    const handleAddPlace = () => {
+        setIsOpen(true);
     }
 
     const onRequestClose = () => {
-        setisOpen(false);
+        setIsOpen(false);
     }
 
     const navigate = useNavigate();
 
-    const handlelogout = async () => {
+    const handleLogout = async () => {
         try {
             const payload = {}
             const response = await userService.logoutUser(payload);
@@ -40,7 +40,7 @@ const Dashboard = () => {
         try {
             const response = await placeService.getAllPlaces();
             console.log('response', response.places);
-            setplaces(response.places);
+            setPlaces(response.places);
         } catch (error) {
             message.error("Error No Places Available!");
         }
@@ -63,14 +63,14 @@ const Dashboard = () => {
 
                 <NavLink
                     className='logout'
-                    onClick={handlelogout}>
+                    onClick={handleLogout}>
                     Logout
                 </NavLink>
             </div>
             <div className='content'>
                 <div className="heading h1">Places</div>
                 <div className='add-btn'>
-                    <button className='addplace' onClick={handleaddplace}>Add place</button>
+                    <button className='addplace' onClick={handleAddPlace}>Add place</button>
                 </div>
 
                 <CustomModal

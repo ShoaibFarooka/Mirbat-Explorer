@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd';
-// import 'antd/dist/reset.css';
 import Quizinfo from '../QuizInfo/QuizInfo';
 import AddQuiz from '../AddQuiz/AddQuiz';
 import './EditPlace.css'
@@ -12,6 +11,7 @@ import CustomModal from '../../../../../components/CustomModal/CustomModal';
 const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [quizzez, setQuizzez] = useState([]);
 
     const openAddQuizModal = () => {
         setIsOpen(true);
@@ -23,71 +23,71 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
 
     const navigate = useNavigate();
 
-    const [formdata, setformdata] = useState({
+    const [formData, setFormData] = useState({
         name: placeData?.name || "",
         description: placeData?.description || "",
         longitude: placeData?.longitude || "",
         latitude: placeData?.latitude || "",
     });
-    const [error, seterror] = useState({
+    const [error, setError] = useState({
         name: "",
         description: "",
         longitude: "",
         latitude: "",
     });
 
-    const handleonchnage = (e) => {
-        setformdata({
-            ...formdata,
+    const handleOnChange = (e) => {
+        setFormData({
+            ...formData,
             [e.target.name]: e.target.value
         })
     }
 
-    const isValidLatitude = (lat) => lat >= -90 && lat <= 90;
-    const isValidLongitude = (lon) => lon >= -180 && lon <= 180;
+    const isValidateLatitude = (lat) => lat >= -90 && lat <= 90;
+    const isValidateLongitude = (lon) => lon >= -180 && lon <= 180;
 
 
-    const validatedata = () => {
+    const validateData = () => {
         let newerror = {};
         let haserrors = false;
 
-        if (formdata.name.trim() === "") {
+        if (formData.name.trim() === "") {
             newerror.name = "Name is mandatory!";
             haserrors = true;
         } else {
             newerror.name = "";
         }
-        if (formdata.description.trim() === "") {
+        if (formData.description.trim() === "") {
             newerror.description = "Description is required!";
             haserrors = true;
         } else {
             newerror.description = ""
         }
-        if (formdata.longitude === "" || formdata.longitude === null || formdata.longitude === undefined) {
+        if (formData.longitude === "" || formData.longitude === null || formData.longitude === undefined) {
             newerror.longitude = "Longitude is required!";
             haserrors = true;
-        } else if (isNaN(formdata.longitude)) {
+        } else if (isNaN(formData.longitude)) {
             newerror.longitude = "Longitude must be a valid number!";
             haserrors = true;
-        } else if (!isValidLongitude(formdata.longitude)) {
+        } else if (!isValidateLongitude(formData.longitude)) {
             newerror.longitude = "Longitude must be between -180 and 180!";
             haserrors = true;
         } else {
             newerror.longitude = "";
         }
-        if (formdata.latitude === "" || formdata.latitude === null || formdata.latitude === undefined) {
+        if (formData.latitude === "" || formData.latitude === null || formData.latitude === undefined) {
             newerror.latitude = "Latitude is required!";
             haserrors = true;
-        } else if (isNaN(formdata.latitude)) {
+        } else if (isNaN(formData.latitude)) {
             newerror.latitude = "Latitude must be a valid number!";
             haserrors = true;
-        } else if (!isValidLatitude(formdata.latitude)) {
+        } else if (!isValidateLatitude(formData.latitude)) {
             newerror.latitude = "Latitude must be between -90 and 90!";
             haserrors = true;
         } else {
             newerror.latitude = "";
         }
-        seterror((prev) => ({ ...prev, ...newerror }));
+        setError((prev) => ({ ...prev, ...newerror }));
         return !haserrors;
     }
 
@@ -97,7 +97,7 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
             longitude: parseFloat(data.longitude),
             latitude: parseFloat(data.latitude)
         }
-        if (!validatedata()) {
+        if (!validateData()) {
             return;
         } try {
             const response = await placeService.updatePlace(id, updatedata);
@@ -112,7 +112,6 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
         }
     }
 
-    const [quizzez, setQuizzez] = useState([]);
 
     const fetchAllQuizzez = async () => {
         try {
@@ -120,8 +119,12 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
             console.log("response", response);
             setQuizzez(response.quizzes);
         } catch (error) {
-            console.log("error", error);
-            message.error("Error During Fetching Quizzez...");
+            if (quizzez.length === 0) {
+                message.error("Add quiz no quizzez avalible for this place!");
+            } else {
+                message.error("Server Error!");
+                console.log("error", error);
+            }
         }
     }
 
@@ -141,8 +144,8 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
                     type="text"
                     name='name'
                     placeholder='Place name'
-                    value={formdata.name}
-                    onChange={handleonchnage} />
+                    value={formData.name}
+                    onChange={handleOnChange} />
                 {error.name && <span className='error'>{error.name}</span>}
 
                 <label
@@ -152,8 +155,8 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
                     type="text"
                     name='description'
                     placeholder='Description'
-                    value={formdata.description}
-                    onChange={handleonchnage} />
+                    value={formData.description}
+                    onChange={handleOnChange} />
                 {error.description && <span className='error'>{error.description}</span>}
 
 
@@ -167,8 +170,8 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
                             type="number"
                             name='longitude'
                             placeholder='Longitude'
-                            value={formdata.longitude}
-                            onChange={handleonchnage} />
+                            value={formData.longitude}
+                            onChange={handleOnChange} />
                         {error.longitude && <span className='error'>{error.longitude}</span>}
 
                     </div>
@@ -182,8 +185,8 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
                             type="number"
                             name='latitude'
                             placeholder='Latitude'
-                            value={formdata.latitude}
-                            onChange={handleonchnage} />
+                            value={formData.latitude}
+                            onChange={handleOnChange} />
                         {error.latitude && <span className='error'>{error.latitude}</span>}
 
 
@@ -194,7 +197,7 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
             <div className='save'>
                 <button
                     className='save-btn'
-                    onClick={() => handleUpdatePlace(placeData._id, formdata)}>Save
+                    onClick={() => handleUpdatePlace(placeData._id, formData)}>Save
                 </button>
             </div>
 

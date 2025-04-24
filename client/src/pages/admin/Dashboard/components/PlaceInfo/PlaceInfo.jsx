@@ -11,11 +11,11 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
 
     const [isOpen, setisOpen] = useState(false);
 
-    const handleclickedit = () => {
+    const handleClickEdit = () => {
         setisOpen(true);
     }
 
-    const handlecloseinfomodal = () => {
+    const handleCloseInfoModal = () => {
         setisOpen(false);
     }
 
@@ -37,11 +37,11 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
             <div className="longitude">{data.longitude}</div>
             <div className="latitude">{data.latitude}</div>
             <div className="icons">
-                <button className='edit-btn' onClick={handleclickedit}>
+                <button className='edit-btn' onClick={handleClickEdit}>
                     <img src={edit} alt="" />
                 </button>
-                <CustomModal isOpen={isOpen} onRequestClose={handlecloseinfomodal} contentLabel={"Edit Place"}>
-                    <EditPlace placeData={data} fetchAllPlaces={fetchAllPlaces} onRequestClose={handlecloseinfomodal} />
+                <CustomModal isOpen={isOpen} onRequestClose={handleCloseInfoModal} contentLabel={"Edit Place"}>
+                    <EditPlace placeData={data} fetchAllPlaces={fetchAllPlaces} onRequestClose={handleCloseInfoModal} />
                 </CustomModal>
                 <Popconfirm
                     title="Delete the task"

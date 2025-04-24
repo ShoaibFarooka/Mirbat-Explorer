@@ -9,14 +9,14 @@ import { message, Popconfirm } from 'antd';
 
 const QuizInfo = ({ quizData, placeData, fetchAllQuizzez }) => {
 
-    const [isOpenquizinfo, setisOpenquizinfo] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleeditquiz = () => {
-        setisOpenquizinfo(true);
+    const handleOpenEditQuiz = () => {
+        setIsOpen(true);
     }
 
-    const hanldeclosequizinfo = () => {
-        setisOpenquizinfo(false);
+    const hanldeCloseQuizInfo = () => {
+        setIsOpen(false);
     }
 
     const handleDeleteQuiz = async (placeid, quizid) => {
@@ -38,11 +38,11 @@ const QuizInfo = ({ quizData, placeData, fetchAllQuizzez }) => {
             <div className="quiz-placeholder time">{quizData.time}</div>
             <div className="quiz-placeholder passingmarks">{quizData.passingMarks}</div>
             <div className="quiz-edit-icons">
-                <button className='quiz-edit-btn' onClick={handleeditquiz}>
+                <button className='quiz-edit-btn' onClick={handleOpenEditQuiz}>
                     <img src={edit} alt="" />
                 </button>
-                <CustomModal isOpen={isOpenquizinfo} onRequestClose={hanldeclosequizinfo} contentLabel={"Edit Quiz"}>
-                    <Editquiz quizData={quizData} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} hanldeclosequizinfo={hanldeclosequizinfo} />
+                <CustomModal isOpen={isOpen} onRequestClose={hanldeCloseQuizInfo} contentLabel={"Edit Quiz"}>
+                    <Editquiz quizData={quizData} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} hanldeCloseQuizInfo={hanldeCloseQuizInfo} />
                 </CustomModal>
                 <Popconfirm
                     title="Delete the task"

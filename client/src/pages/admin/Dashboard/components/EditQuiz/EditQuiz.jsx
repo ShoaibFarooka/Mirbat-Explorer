@@ -8,10 +8,10 @@ import { message } from 'antd';
 import Addquestion from '../AddQuestion/AddQuestion';
 
 
-const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo }) => {
+const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo }) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [questionsData, setQuestionsData] = useState([]);
+    const [questionData, setQuestionData] = useState([]);
 
     const openAddQuestion = () => {
         setIsOpen(true);
@@ -27,13 +27,13 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
         passingMarks: quizData?.passingMarks || ""
     })
 
-    const [Error, setError] = useState({
+    const [error, setError] = useState({
         title: "",
         time: "",
         passingMarks: ""
     })
 
-    const handleInputChnage = (e) => {
+    const handleOnChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
@@ -41,36 +41,36 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
     }
 
     const validateData = () => {
-        let newerrors = {};
-        let haserrors = false;
+        let newErrors = {};
+        let hasErrors = false;
         if (formData.title.trim() === "") {
-            newerrors.title = "Title is mandatory!";
-            haserrors = true;
+            newErrors.title = "Title is mandatory!";
+            hasErrors = true;
         } else {
-            newerrors.title = ""
+            newErrors.title = ""
         }
         if (formData.time === "" || formData.time === null || formData.time === undefined) {
-            newerrors.time = "Time is mandatory!";
-            haserrors = true;
+            newErrors.time = "Time is mandatory!";
+            hasErrors = true;
         } else if (isNaN(formData.time)) {
-            newerrors.time = "Time must be a valid number";
-            haserrors = true;
+            newErrors.time = "Time must be a valid number";
+            hasErrors = true;
         }
         else {
-            newerrors.time = ""
+            newErrors.time = ""
         }
         if (formData.passingMarks === "" || formData.passingMarks === null || formData.passingMarks === undefined) {
-            newerrors.passingMarks = "PassingMarks are mandatory!";
-            haserrors = true;
+            newErrors.passingMarks = "PassingMarks are mandatory!";
+            hasErrors = true;
         } else if (isNaN(formData.passingMarks)) {
-            newerrors.passingMarks = "PassingMarks must be a valid number";
-            haserrors = true;
+            newErrors.passingMarks = "PassingMarks must be a valid number";
+            hasErrors = true;
         }
         else {
-            newerrors.passingMarks = "";
+            newErrors.passingMarks = "";
         }
-        setError((prev) => ({ ...prev, ...newerrors }));
-        return !haserrors;
+        setError((prev) => ({ ...prev, ...newErrors }));
+        return !hasErrors;
     }
 
     const handleClickSave = async () => {
@@ -81,7 +81,7 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
             console.log("response", response);
             message.success("Quiz updated succesfully!");
             fetchAllQuizzez();
-            hanldeclosequizinfo();
+            hanldeCloseQuizInfo();
         } catch (error) {
             console.log("error", error);
             message.error("Failed to update quiz!");
@@ -92,10 +92,14 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
         try {
             const resposne = await questionService.getAllQuestions(quizData._id);
             console.log("response", resposne);
-            setQuestionsData(resposne.questions);
+            setQuestionData(resposne.questions);
         } catch (error) {
-            console.log("error", error);
-            message.error("No quiz avalaibel!");
+            if (questionData.length === 0) {
+                message.error("Add Questions no questions avalaibel for this quiz!");
+            } else {
+                console.log("error", error);
+                message.error("Server Error!");
+            }
         }
     }
 
@@ -110,21 +114,21 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
 
             <div className='form'>
                 <label htmlFor="title">Title</label>
-                <input type="text" name='title' placeholder='Title' value={formData.title} onChange={handleInputChnage} />
-                {Error.title && <span className='error'>{Error.title}</span>}
+                <input type="text" name='title' placeholder='Title' value={formData.title} onChange={handleOnChange} />
+                {error.title && <span className='error'>{error.title}</span>}
 
                 <div className='time-and-marks'>
 
                     <div className='time'>
                         <label htmlFor="time">Total</label>
-                        <input type="number" name='time' placeholder='Time' value={formData.time} onChange={handleInputChnage} />
-                        {Error.time && <span className='error'>{Error.time}</span>}
+                        <input type="number" name='time' placeholder='Time' value={formData.time} onChange={handleOnChange} />
+                        {error.time && <span className='error'>{error.time}</span>}
                     </div>
 
                     <div className='marks'>
                         <label htmlFor="passingMarks">Passing Marks</label>
-                        <input type="number" name='passingMarks' placeholder='Passing Marks' value={formData.passingMarks} onChange={handleInputChnage} />
-                        {Error.passingMarks && <span className='error'>{Error.passingMarks}</span>}
+                        <input type="number" name='passingMarks' placeholder='Passing Marks' value={formData.passingMarks} onChange={handleOnChange} />
+                        {error.passingMarks && <span className='error'>{error.passingMarks}</span>}
                     </div>
 
                 </div>
@@ -150,10 +154,10 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
                 </CustomModal>
 
 
-                {questionsData.map((questionsdata, index) =>
+                {questionData.map((questionsData, index) =>
                     <QuestionInfo
                         key={index}
-                        questionsdata={questionsdata}
+                        questionsData={questionsData}
                         quizData={quizData}
                         fetchAllQuestions={fetchAllQuestions}
                     />
