@@ -29,11 +29,12 @@
 
 .modal .cross-icon-container {
     background-color: #ffffff;
-    position: relative;
-    width: 45px;
-    height: 45px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    float: right;
     cursor: pointer;
     display: flex;
     align-items: center;
