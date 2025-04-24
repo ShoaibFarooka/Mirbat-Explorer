@@ -1,0 +1,170 @@
+.add-place {
+    display: flex;
+    flex-direction: column;
+    padding: 0 137px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 120px 15px #152D66B2 inset;
+    border-radius: 54px;
+}
+
+.add-place .heading {
+    font-size: 2rem;
+    color: var(--primary-color-1);
+    margin-top: 40px;
+}
+
+.add-place .form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-place .error {
+    margin-top: 10px;
+    font-family: var(--text-font);
+    font-weight: var(--text-font);
+    color: red;
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.add-place .form .label {
+    font-size: 1.5rem;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+    padding-left: 20px;
+}
+
+.add-place .form .description {
+    margin-top: 31px;
+}
+
+.add-place input {
+    padding: 20px 20px;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 30px;
+}
+
+.add-place input::placeholder {
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: var(--text-font-size);
+}
+
+.add-place input:focus {
+    outline: none;
+}
+
+.add-place .position {
+    margin-top: 18px;
+    display: flex;
+    gap: 26px;
+}
+
+.add-place .position input {
+    margin-top: 10px;
+}
+
+.add-place .position .longitude {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+}
+
+.add-place .position .latitude {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+}
+
+.add-place .save {
+    margin-top: 45px;
+    margin-bottom: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-place .save .save-btn {
+    border: none;
+    border-radius: 30px;
+    padding: 10px 40px;
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+    background-color: var(--secondary-color-2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.add-place .save .save-btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media only screen and (max-width:1030px) {
+    .add-place {
+        padding: 0 90px;
+    }
+
+}
+
+
+@media only screen and (max-width:770px) {
+    .add-place {
+        padding: 0 70px;
+        border-radius: 30px;
+    }
+
+    .add-place input {
+        border-radius: 15px;
+        padding: 12px 12px;
+    }
+
+    .add-place .save .save-btn {
+        padding: 10px 25px;
+    }
+
+}
+
+
+@media only screen and (max-width:620px) {
+    .add-place {
+        padding: 0 15px;
+    }
+
+
+    .add-place .form .label {
+        padding-left: 10px;
+    }
+
+    .add-place input {
+        padding: 10px 10px;
+    }
+
+    .add-place .form .description {
+        margin-top: 10px;
+    }
+
+    .add-place .position {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    .add-place .save .save-btn {
+        padding: 10px 30px;
+    }
+
+}
+
+@media only screen and (max-width:400px) {
+    .add-place {
+        border-radius: 20px;
+    }
+
+}
