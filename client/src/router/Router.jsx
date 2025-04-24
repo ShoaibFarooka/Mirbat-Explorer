@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import routes from './routerconfig.jsx';
+import routes from './RouterConfig.jsx'
 import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute.jsx'
 
 const Router = () => {
