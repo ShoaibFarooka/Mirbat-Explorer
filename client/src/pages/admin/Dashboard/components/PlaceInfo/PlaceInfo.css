@@ -73,14 +73,6 @@
     cursor: pointer;
 }
 
-
-@media only screen and (max-width:1030px) {
-    .places-info {
-        overflow-wrap: break-word;
-        align-items: center;
-    }
-}
-
 @media only screen and (max-width:770px) {
 
     .places-info .name {
