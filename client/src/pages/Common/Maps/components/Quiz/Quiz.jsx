@@ -149,4 +149,4 @@ const Quiz = ({ quiz, setisOpen }) => {
         </div>
     )
 }
-export default Quiz
+export default Quiz;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './Addquestion.css';
+import './AddQuestion.css';
 import { message, Select } from 'antd';
 import 'antd/dist/reset.css';
-import questionService from '../../../../../../../../../../../../../services/questionService';
+import questionService from '../../../../../services/questionService';
 
-const Addquestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {
+const AddQuestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {
 
     const [formData, setFormData] = useState({
         questionText: "",
@@ -165,4 +165,4 @@ const Addquestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {
     )
 }
 
-export default Addquestion
+export default AddQuestion;

@@ -6,7 +6,7 @@ import logo from '../../../assets/images/logo.png'
 import userService from '../../../services/userService';
 import Cookies from 'js-cookie';
 
-const AdminLogin = () => {
+const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -101,4 +101,4 @@ const AdminLogin = () => {
     )
 }
 
-export default AdminLogin
+export default Login;

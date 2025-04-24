@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './QuestionInfo.css'
-import edit from '../../../../../../../../../../../../assets/icons/edit.png';
-import del from '../../../../../../../../../../../../assets/icons/del.png';
-import questionService from '../../../../../../../../../../../../services/questionService';
+import edit from '../../../../../assets/icons/edit.png';
+import del from '../../../../../assets/icons/del.png';
+import questionService from '../../../../../services/questionService';
 import { message, Popconfirm } from 'antd';
-import CustomModal from '../../../../../../../../../../../../components/CustomModal/CustomModal';
-import Editquestion from './Components/Editquestion/Editquestion';
+import CustomModal from '../../../../../components/CustomModal/CustomModal';
+import Editquestion from '../EditQuestion/EditQuestion';
 
 
 const QuestionInfo = ({ questionsdata, quizData, fetchAllQuestions }) => {
@@ -70,4 +70,4 @@ const QuestionInfo = ({ questionsdata, quizData, fetchAllQuestions }) => {
     )
 }
 
-export default QuestionInfo
+export default QuestionInfo;

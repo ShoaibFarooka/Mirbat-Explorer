@@ -26,4 +26,4 @@ const Failed = ({ score, setisOpen, name, totalQuestions, retry }) => {
     )
 }
 
-export default Failed
+export default Failed;

@@ -4,7 +4,7 @@ import edit from '../../../../../assets/icons/edit.png';
 import { Popconfirm } from 'antd';
 import './PlaceInfo.css'
 import CustomModal from '../../../../../components/CustomModal/CustomModal';
-import Editplace from '../PlaceInfo/Components/EditPlace/Editplace'
+import EditPlace from '../EditPlace/EditPlace';
 import placeService from '../../../../../services/placeService';
 
 const PlaceInfo = ({ data, fetchAllPlaces }) => {
@@ -41,7 +41,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
                     <img src={edit} alt="" />
                 </button>
                 <CustomModal isOpen={isOpen} onRequestClose={handlecloseinfomodal} contentLabel={"Edit Place"}>
-                    <Editplace placeData={data} fetchAllPlaces={fetchAllPlaces} onRequestClose={handlecloseinfomodal} />
+                    <EditPlace placeData={data} fetchAllPlaces={fetchAllPlaces} onRequestClose={handlecloseinfomodal} />
                 </CustomModal>
                 <Popconfirm
                     title="Delete the task"
@@ -60,4 +60,4 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
     )
 }
 
-export default PlaceInfo
+export default PlaceInfo;

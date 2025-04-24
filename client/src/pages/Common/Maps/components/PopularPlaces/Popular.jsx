@@ -18,4 +18,4 @@ const Popular = ({ data }) => {
     )
 }
 
-export default Popular
+export default Popular;

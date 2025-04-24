@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import './Dashboard.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
-import PlaceInfo from './Components/PlaceInfo/PlaceInfo';
+import PlaceInfo from './components/PlaceInfo/PlaceInfo';
 import CustomModal from '../../../components/CustomModal/CustomModal';
-import Addplace from './Components/Addplace/Addplace';
+import AddPlace from './components/AddPlace/AddPlace';
 import userService from '../../../services/userService';
 import Cookies from 'js-cookie';
 import { message } from 'antd';
@@ -78,7 +78,7 @@ const Dashboard = () => {
                     onRequestClose={onRequestClose}
                     contentLabel={"Add Place"}
                 >
-                    <Addplace
+                    <AddPlace
                         onRequestClose={onRequestClose}
                         fetchAllPlaces={fetchAllPlaces}
                     />
@@ -106,4 +106,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Dashboard;

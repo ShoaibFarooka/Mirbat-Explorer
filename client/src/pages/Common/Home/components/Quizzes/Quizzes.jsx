@@ -19,4 +19,4 @@ const Quizzes = () => {
   )
 }
 
-export default Quizzes
+export default Quizzes;

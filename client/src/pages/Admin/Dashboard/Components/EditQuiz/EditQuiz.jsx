@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import './Editquiz.css';
+import './EditQuiz.css';
 import QuestionInfo from '../QuestionInfo/QuestionInfo';
-import quizService from '../../../../../../../../../../../../services/quizService';
-import questionService from '../../../../../../../../../../../../services/questionService';
-import CustomModal from '../../../../../../../../../../../../components/CustomModal/CustomModal';
+import quizService from '../../../../../services/quizService';
+import questionService from '../../../../../services/questionService';
+import CustomModal from '../../../../../components/CustomModal/CustomModal';
 import { message } from 'antd';
-import Addquestion from './Components/Addquestion';
+import Addquestion from '../AddQuestion/AddQuestion';
 
 
-const Editquiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo }) => {
+const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo }) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [questionsData, setQuestionsData] = useState([]);
@@ -163,4 +163,4 @@ const Editquiz = ({ quizData, placeData, fetchAllQuizzez, hanldeclosequizinfo })
     )
 }
 
-export default Editquiz
+export default EditQuiz;

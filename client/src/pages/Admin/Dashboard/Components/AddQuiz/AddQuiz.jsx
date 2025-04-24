@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import './Addquiz.css'
-import quizService from '../../../../../../../../../services/quizService'
+import './AddQuiz.css'
+import quizService from '../../../../../services/quizService';
 import { message } from 'antd'
 
-const Addquiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
+const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -118,4 +118,4 @@ const Addquiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
     )
 }
 
-export default Addquiz
+export default AddQuiz;

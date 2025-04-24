@@ -23,4 +23,4 @@ const Pass = ({ score, setscore, setisfinished, setisOpen, name, totalQuestions 
     )
 }
 
-export default Pass
+export default Pass;

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import './Editquestion.css'
+import './EditQuestion.css'
 import { message, Select } from 'antd'
-import questionService from '../../../../../../../../../../../../../../services/questionService';
-const Editquestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQuestions, }) => {
+import questionService from '../../../../../services/questionService';
+const EditQuestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQuestions, }) => {
 
     const { Option } = Select;
 
@@ -161,4 +161,4 @@ const Editquestion = ({ questionsdata, quizData, closeEditquestion, fetchAllQues
     )
 }
 
-export default Editquestion
+export default EditQuestion;

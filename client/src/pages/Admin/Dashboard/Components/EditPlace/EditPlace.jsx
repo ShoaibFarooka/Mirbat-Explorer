@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd';
 import 'antd/dist/reset.css';
-import Quizinfo from './Components/Quizinfo/Quizinfo'
-import Addquiz from './Components/Addquiz/Addquiz'
-import './Editplace.css'
-import placeService from '../../../../../../../services/placeService';
+import Quizinfo from '../QuizInfo/QuizInfo';
+import AddQuiz from '../AddQuiz/AddQuiz';
+import './EditPlace.css'
+import placeService from '../../../../../services/placeService';
 import { useNavigate } from 'react-router-dom';
-import quizService from '../../../../../../../services/quizService';
-import CustomModal from '../../../../../../../components/CustomModal/CustomModal';
+import quizService from '../../../../../services/quizService';
+import CustomModal from '../../../../../components/CustomModal/CustomModal';
 
-const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
+const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -209,7 +209,7 @@ const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
                 </div>
 
                 <CustomModal isOpen={isOpen} onRequestClose={closeAddQuizModal} contentLabel={"Add Quiz"}>
-                    <Addquiz closeAddQuizModal={closeAddQuizModal} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} />
+                    <AddQuiz closeAddQuizModal={closeAddQuizModal} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} />
                 </CustomModal>
 
                 <div className='quiz-info'>
@@ -236,4 +236,4 @@ const Editplace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
     )
 }
 
-export default Editplace
+export default EditPlace;

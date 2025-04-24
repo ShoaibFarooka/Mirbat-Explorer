@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import './Quizinfo.css'
-import edit from '../../../../../../../../../assets/icons/edit.png'
-import del from '../../../../../../../../../assets/icons/del.png'
-import Editquiz from './Components/EditQuiz/Editquiz/Editquiz'
-import CustomModal from '../../../../../../../../../components/CustomModal/CustomModal'
-import quizService from '../../../../../../../../../services/quizService'
-import { message, Popconfirm } from 'antd'
+import './QuizInfo.css';
+import edit from '../../../../../assets/icons/edit.png';
+import del from '../../../../../assets/icons/del.png';
+import Editquiz from '../EditQuiz/EditQuiz';
+import CustomModal from '../../../../../components/CustomModal/CustomModal';
+import quizService from '../../../../../services/quizService';
+import { message, Popconfirm } from 'antd';
 
-const Quizinfo = ({ quizData, placeData, fetchAllQuizzez }) => {
+const QuizInfo = ({ quizData, placeData, fetchAllQuizzez }) => {
 
     const [isOpenquizinfo, setisOpenquizinfo] = useState(false);
 
@@ -61,4 +61,4 @@ const Quizinfo = ({ quizData, placeData, fetchAllQuizzez }) => {
     )
 }
 
-export default Quizinfo
+export default QuizInfo;
