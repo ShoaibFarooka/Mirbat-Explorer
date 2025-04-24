@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddQuestion.css';
 import { message, Select } from 'antd';
-import 'antd/dist/reset.css';
+// import 'antd/dist/reset.css';
 import questionService from '../../../../../services/questionService';
 
 const AddQuestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {

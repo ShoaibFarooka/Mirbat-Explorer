@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Quiz.css';
 import { message } from 'antd';
-import 'antd/dist/reset.css';
+// import 'antd/dist/reset.css';
 import Pass from '../Pass/Pass';
 import Failed from '../Failed/Failed';
-
 
 const Quiz = ({ quiz, setisOpen }) => {
     const [index, setindex] = useState(0);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd';
-import 'antd/dist/reset.css';
+// import 'antd/dist/reset.css';
 import Quizinfo from '../QuizInfo/QuizInfo';
 import AddQuiz from '../AddQuiz/AddQuiz';
 import './EditPlace.css'

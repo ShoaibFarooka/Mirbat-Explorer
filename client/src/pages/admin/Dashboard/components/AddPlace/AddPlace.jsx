@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './AddPlace.css'
 import { message } from 'antd';
-import 'antd/dist/reset.css';
+// import 'antd/dist/reset.css';
 import placeService from '../../../../../services/placeService';
 import { useNavigate } from 'react-router-dom';
 
