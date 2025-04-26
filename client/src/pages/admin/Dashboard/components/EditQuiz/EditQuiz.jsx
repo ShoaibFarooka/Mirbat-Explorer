@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './EditQuiz.css';
 import QuestionInfo from '../QuestionInfo/QuestionInfo';
 import quizService from '../../../../../services/quizService';
-import questionService from '../../../../../services/questionService';
 import CustomModal from '../../../../../components/CustomModal/CustomModal';
 import { message } from 'antd';
 import Addquestion from '../AddQuestion/AddQuestion';
 
 
-const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo }) => {
+const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo, fetchAllQuestions, questionData }) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [questionData, setQuestionData] = useState([]);
 
     const openAddQuestion = () => {
         setIsOpen(true);
@@ -85,21 +83,6 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo })
         } catch (error) {
             console.log("error", error);
             message.error("Failed to update quiz!");
-        }
-    }
-
-    const fetchAllQuestions = async () => {
-        try {
-            const resposne = await questionService.getAllQuestions(quizData._id);
-            console.log("response", resposne);
-            setQuestionData(resposne.questions);
-        } catch (error) {
-            if (questionData.length === 0) {
-                message.error("Add Questions no questions avalaibel for this quiz!");
-            } else {
-                console.log("error", error);
-                message.error("Server Error!");
-            }
         }
     }
 

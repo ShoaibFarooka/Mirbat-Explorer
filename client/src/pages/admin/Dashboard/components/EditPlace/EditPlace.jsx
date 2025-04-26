@@ -6,20 +6,10 @@ import './EditPlace.css'
 import placeService from '../../../../../services/placeService';
 import { useNavigate } from 'react-router-dom';
 import quizService from '../../../../../services/quizService';
-import CustomModal from '../../../../../components/CustomModal/CustomModal';
 
-const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
+const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose, handleOpenAddQuiz }) => {
 
-    const [isOpen, setIsOpen] = useState(false);
     const [quizzez, setQuizzez] = useState([]);
-
-    const openAddQuizModal = () => {
-        setIsOpen(true);
-    }
-
-    const closeAddQuizModal = () => {
-        setIsOpen(false);
-    }
 
     const navigate = useNavigate();
 
@@ -206,14 +196,11 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose }) => {
                     Quiz
                     <button
                         className='add-quiz-btn'
-                        onClick={openAddQuizModal}>
+                        onClick={handleOpenAddQuiz}>
                         Add Quiz
                     </button>
                 </div>
 
-                <CustomModal isOpen={isOpen} onRequestClose={closeAddQuizModal} contentLabel={"Add Quiz"}>
-                    <AddQuiz closeAddQuizModal={closeAddQuizModal} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} />
-                </CustomModal>
 
                 <div className='quiz-info'>
                     <div className="heading">Title</div>

@@ -5,11 +5,14 @@ import del from '../../../../../assets/icons/del.png';
 import Editquiz from '../EditQuiz/EditQuiz';
 import CustomModal from '../../../../../components/CustomModal/CustomModal';
 import quizService from '../../../../../services/quizService';
+import questionService from '../../../../../services/questionService';
 import { message, Popconfirm } from 'antd';
 
 const QuizInfo = ({ quizData, placeData, fetchAllQuizzez }) => {
 
     const [isOpen, setIsOpen] = useState(false);
+
+    const [questionData, setQuestionData] = useState([]);
 
     const handleOpenEditQuiz = () => {
         setIsOpen(true);
@@ -32,6 +35,22 @@ const QuizInfo = ({ quizData, placeData, fetchAllQuizzez }) => {
     }
 
 
+    const fetchAllQuestions = async () => {
+        try {
+            const resposne = await questionService.getAllQuestions(quizData._id);
+            console.log("response", resposne);
+            setQuestionData(resposne.questions);
+        } catch (error) {
+            if (questionData.length === 0) {
+                message.error("Add Questions no questions avalaibel for this quiz!");
+            } else {
+                console.log("error", error);
+                message.error("Server Error!");
+            }
+        }
+    }
+
+
     return (
         <div className='quizinfo'>
             <div className="quiz-placeholder title">{quizData.title}</div>
@@ -42,7 +61,7 @@ const QuizInfo = ({ quizData, placeData, fetchAllQuizzez }) => {
                     <img src={edit} alt="" />
                 </button>
                 <CustomModal isOpen={isOpen} onRequestClose={hanldeCloseQuizInfo} contentLabel={"Edit Quiz"}>
-                    <Editquiz quizData={quizData} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} hanldeCloseQuizInfo={hanldeCloseQuizInfo} />
+                    <Editquiz quizData={quizData} placeData={placeData} fetchAllQuizzez={fetchAllQuizzez} hanldeCloseQuizInfo={hanldeCloseQuizInfo} fetchAllQuestions={fetchAllQuestions} questionData={questionData} />
                 </CustomModal>
                 <Popconfirm
                     title="Delete the task"

@@ -2,43 +2,40 @@
     padding: 12px 14px;
     background: #D9D9D959;
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
     align-items: center;
     border-radius: 10px;
     margin-top: 20px;
 }
 
 .places-info .name {
-    width: 100px;
+    width: 15%;
     font-family: var(--text-font);
     font-weight: var(--text-font-weight);
     font-size: 1.5rem;
     color: var(--secondary-color-2);
-    padding-right: 30px;
 }
 
 .places-info .description {
-    width: 150px;
+    width: 25%;
     font-family: var(--text-font);
     font-weight: var(--text-font-weight);
     font-size: 1.5rem;
     color: var(--secondary-color-2);
-    padding-right: 30px;
 }
 
 .places-info .longitude {
     text-align: center;
-    width: 100px;
+    width: 15%;
     font-family: var(--text-font);
     font-weight: var(--text-font-weight);
     font-size: 1.5rem;
     color: var(--secondary-color-2);
-    padding-right: 10px;
 }
 
 .places-info .latitude {
     text-align: center;
-    width: 100px;
+    width: 25%;
     font-family: var(--text-font);
     font-weight: var(--text-font-weight);
     font-size: 1.5rem;
@@ -50,7 +47,8 @@
     display: flex;
     justify-content: flex-end;
     gap: 20px;
-    width: 100px;
+    width: 13%;
+
 }
 
 .places-info .icons img {
@@ -76,54 +74,35 @@
 }
 
 @media only screen and (max-width:770px) {
-
-    .places-info .name {
-        width: 70px;
-        text-align: center;
-    }
-
-    .places-info .description {
-        width: 90px;
-    }
-
-    .places-info .longitude {
-        text-align: center;
-    }
-
     .places-info .icons img {
         width: 15px;
     }
 
     .places-info .icons {
         gap: 10px;
-        width: 50px;
     }
 
 }
 
-@media only screen and (max-width:500px) {
+@media only screen and (max-width:430px) {
     .places-info .name {
-        width: 50px;
-        padding-right: 10px;
+        width: 10%;
     }
 
     .places-info .description {
-        width: 50px;
-        padding-right: 50px;
+        width: 25%;
     }
 
     .places-info .longitude {
-        width: 50px;
-        padding-right: 0;
-        padding-left: 10px;
+        width: 15%;
     }
 
     .places-info .latitude {
-        width: 50px;
+        width: 15%;
     }
 
     .places-info .icons {
-        width: 50px;
+        width: 15%;
     }
 
     .places-info .icons img {
@@ -132,12 +111,8 @@
 }
 
 @media only screen and (max-width:330px) {
-    .places-info .name {
-        width: 30px;
-    }
-
-    .places-info .longitude {
-        padding-left: 20px;
+    .places-info {
+        padding: 10px 8px;
     }
 
 }

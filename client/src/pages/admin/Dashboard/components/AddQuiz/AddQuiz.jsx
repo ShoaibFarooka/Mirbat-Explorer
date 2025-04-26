@@ -3,7 +3,7 @@ import './AddQuiz.css'
 import quizService from '../../../../../services/quizService';
 import { message } from 'antd'
 
-const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
+const AddQuiz = ({ closeAddQuizModal, placeData, setIsEditPlaceOpen }) => {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -23,6 +23,14 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
             [e.target.name]: e.target.value
         })
     }
+
+    const handleClickBack = () => {
+        closeAddQuizModal();
+        setTimeout(() => {
+            setIsEditPlaceOpen(true);
+        }, 300);
+    }
+
 
     const validatedata = () => {
         let newErrors = {};
@@ -65,7 +73,6 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
             const response = await quizService.addQuiz(placeData._id, formData);
             console.log('response', response);
             message.success("Quiz added succesfully!");
-            fetchAllQuizzez();
             closeAddQuizModal();
         } catch (error) {
             console.log("error", error);
@@ -99,7 +106,7 @@ const AddQuiz = ({ closeAddQuizModal, placeData, fetchAllQuizzez }) => {
                 <div className='btns'>
                     <button
                         className='quiz-back-btn'
-                        onClick={closeAddQuizModal}
+                        onClick={handleClickBack}
                     >
                         {`< Back`}
                     </button>
