@@ -74,8 +74,7 @@
 .editquiz .quiz-save {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .editquiz .quiz-save .quiz-save-btn {
@@ -90,7 +89,27 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.editquiz .save .quiz-save-btn:hover {
+.editquiz .quiz-save .quiz-save-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.editquiz .quiz-save .quiz-back-btn {
+    font-family: var(--text-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 1.5rem;
+    color: var(--primary-color-1);
+    background-color: var(--secondary-color-2);
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.editquiz .quiz-save .quiz-back-btn:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -156,5 +175,15 @@
 @media only screen and (max-width:400px) {
     .editquiz {
         padding: 0 30px;
+    }
+
+    .editquiz .quiz-save {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .editquiz .quiz-save .quiz-back-btn {
+        order: 2;
     }
 }

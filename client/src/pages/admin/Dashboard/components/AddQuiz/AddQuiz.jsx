@@ -3,7 +3,7 @@ import './AddQuiz.css'
 import quizService from '../../../../../services/quizService';
 import { message } from 'antd'
 
-const AddQuiz = ({ closeAddQuizModal, placeData, setIsEditPlaceOpen }) => {
+const AddQuiz = ({ closeAddQuizModal, placeData, handleOpenEditPlace }) => {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -27,7 +27,7 @@ const AddQuiz = ({ closeAddQuizModal, placeData, setIsEditPlaceOpen }) => {
     const handleClickBack = () => {
         closeAddQuizModal();
         setTimeout(() => {
-            setIsEditPlaceOpen(true);
+            handleOpenEditPlace();
         }, 300);
     }
 
@@ -74,6 +74,7 @@ const AddQuiz = ({ closeAddQuizModal, placeData, setIsEditPlaceOpen }) => {
             console.log('response', response);
             message.success("Quiz added succesfully!");
             closeAddQuizModal();
+            setIsEditPlaceOpen(true);
         } catch (error) {
             console.log("error", error);
             message.error("error failed to add quiz! ");

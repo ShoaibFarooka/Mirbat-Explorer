@@ -103,6 +103,10 @@ const EditQuestion = ({ questionsData, quizData, handleCloseEditQuestion, fetchA
         }
     }
 
+    const handleClickBack = () => {
+        handleCloseEditQuestion();
+    }
+
     return (
         <div className='addquestion'>
             <div className='heading h1'>
@@ -154,6 +158,7 @@ const EditQuestion = ({ questionsData, quizData, handleCloseEditQuestion, fetchA
                 </div>
 
                 <div className='addquestion-save'>
+                    <button className='addquestion-back-btn' onClick={handleClickBack}>{`< Back`}</button>
                     <button className='addquestion-save-btn' onClick={handleClickSave}>Save</button>
                 </div>
             </div>

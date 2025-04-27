@@ -2,22 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './EditQuiz.css';
 import QuestionInfo from '../QuestionInfo/QuestionInfo';
 import quizService from '../../../../../services/quizService';
-import CustomModal from '../../../../../components/CustomModal/CustomModal';
 import { message } from 'antd';
-import Addquestion from '../AddQuestion/AddQuestion';
 
 
-const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo, fetchAllQuestions, questionData }) => {
-
-    const [isOpen, setIsOpen] = useState(false);
-
-    const openAddQuestion = () => {
-        setIsOpen(true);
-    }
-
-    const closeAddQuestion = () => {
-        setIsOpen(false);
-    }
+const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, handleCloseEditQuiz, fetchAllQuestions, questionData, handleOpenEditPlace, handleOpenAddQuestion, handleOpenEditQuestion }) => {
 
     const [formData, setFormData] = useState({
         title: quizData?.title || "",
@@ -79,17 +67,25 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo, f
             console.log("response", response);
             message.success("Quiz updated succesfully!");
             fetchAllQuizzez();
-            hanldeCloseQuizInfo();
+            handleCloseEditQuiz();
+            setIsEditPlaceOpen(true);
         } catch (error) {
+            console.log("Quiz Data", quizData);
             console.log("error", error);
             message.error("Failed to update quiz!");
         }
     }
 
     useEffect(() => {
-        fetchAllQuestions()
-    }, [])
+        fetchAllQuestions();
+    }, []);
 
+    const handleClickBack = () => {
+        handleCloseEditQuiz();
+        setTimeout(() => {
+            handleOpenEditPlace();
+        }, 300);
+    }
 
     return (
         <div className='editquiz'>
@@ -117,24 +113,13 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo, f
                 </div>
 
                 <div className='quiz-save'>
+                    <button className='quiz-back-btn' onClick={handleClickBack}>{`< Back`}</button>
                     <button className='quiz-save-btn' onClick={handleClickSave}>Save</button>
                 </div>
 
                 <div className='heading question'>Questions
-                    <button className='add-question-btn' onClick={openAddQuestion}>Add Questions</button>
+                    <button className='add-question-btn' onClick={handleOpenAddQuestion}>Add Questions</button>
                 </div>
-
-                <CustomModal
-                    isOpen={isOpen}
-                    onRequestClose={closeAddQuestion}
-                    contentLabel={"Add Question"}
-                >
-                    <Addquestion
-                        quizData={quizData}
-                        fetchAllQuestions={fetchAllQuestions}
-                        closeAddQuestion={closeAddQuestion}
-                    />
-                </CustomModal>
 
 
                 {questionData.map((questionsData, index) =>
@@ -143,6 +128,7 @@ const EditQuiz = ({ quizData, placeData, fetchAllQuizzez, hanldeCloseQuizInfo, f
                         questionsData={questionsData}
                         quizData={quizData}
                         fetchAllQuestions={fetchAllQuestions}
+                        handleOpenEditQuestion={handleOpenEditQuestion}
                     />
                 )}
             </div>

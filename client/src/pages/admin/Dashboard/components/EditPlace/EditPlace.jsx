@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd';
 import Quizinfo from '../QuizInfo/QuizInfo';
-import AddQuiz from '../AddQuiz/AddQuiz';
 import './EditPlace.css'
 import placeService from '../../../../../services/placeService';
 import { useNavigate } from 'react-router-dom';
-import quizService from '../../../../../services/quizService';
 
-const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose, handleOpenAddQuiz }) => {
+const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpenAddQuiz, fetchAllQuizzez, quizzez, handleOpenEditQuiz }) => {
 
-    const [quizzez, setQuizzez] = useState([]);
 
     const navigate = useNavigate();
 
@@ -82,18 +79,19 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose, handleOpenAddQui
     }
 
     const handleUpdatePlace = async (id, data) => {
+        if (!validateData()) {
+            return;
+        }
         const updatedata = {
             ...data,
             longitude: parseFloat(data.longitude),
             latitude: parseFloat(data.latitude)
         }
-        if (!validateData()) {
-            return;
-        } try {
+        try {
             const response = await placeService.updatePlace(id, updatedata);
             console.log('response', response);
             message.success("Place Updated Sucessfully!");
-            onRequestClose();
+            handleCloseEditPlace();
             fetchAllPlaces();
             navigate('/admin/dashboard');
         } catch (error) {
@@ -102,25 +100,13 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose, handleOpenAddQui
         }
     }
 
-
-    const fetchAllQuizzez = async () => {
-        try {
-            const response = await quizService.getAllQuizzes(placeData._id);
-            console.log("response", response);
-            setQuizzez(response.quizzes);
-        } catch (error) {
-            if (quizzez.length === 0) {
-                message.error("Add quiz no quizzez avalible for this place!");
-            } else {
-                message.error("Server Error!");
-                console.log("error", error);
-            }
-        }
-    }
-
     useEffect(() => {
         fetchAllQuizzez();
     }, [])
+
+    const handleClickBack = () => {
+        handleCloseEditPlace();
+    }
 
     return (
         <div className='add-place'>
@@ -184,11 +170,13 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose, handleOpenAddQui
                 </div>
             </div>
 
-            <div className='save'>
+            <div className='quiz-save'>
+                <button className='back-btn' onClick={handleClickBack}>{`< Back`}</button>
                 <button
                     className='save-btn'
                     onClick={() => handleUpdatePlace(placeData._id, formData)}>Save
                 </button>
+
             </div>
 
             <div className='quizez-info'>
@@ -217,6 +205,7 @@ const EditPlace = ({ placeData, fetchAllPlaces, onRequestClose, handleOpenAddQui
                             key={index}
                             quizData={quizData}
                             placeData={placeData}
+                            handleOpenEditQuiz={handleOpenEditQuiz}
                             fetchAllQuizzez={fetchAllQuizzez}
                         />
                     )

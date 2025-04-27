@@ -3,7 +3,7 @@ import './AddQuestion.css';
 import { message, Select } from 'antd';
 import questionService from '../../../../../services/questionService';
 
-const AddQuestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {
+const AddQuestion = ({ quizData, fetchAllQuestions, handleCloseAddQuestion, handleOpenEditQuiz, selectedQuiz }) => {
 
     const [formData, setFormData] = useState({
         questionText: "",
@@ -96,11 +96,16 @@ const AddQuestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {
             console.log("resposne", response);
             message.success("Queston added succesfully!");
             fetchAllQuestions();
-            closeAddQuestion();
+            handleCloseAddQuestion();
         } catch (error) {
             console.log("error", error);
             message.error("error failed to add question!");
         }
+    }
+
+    const handleClickBack = () => {
+        handleCloseAddQuestion();
+        handleOpenEditQuiz(quizData);
     }
 
     const { Option } = Select;
@@ -157,6 +162,7 @@ const AddQuestion = ({ quizData, fetchAllQuestions, closeAddQuestion }) => {
                 </div>
 
                 <div className='addquestion-save'>
+                    <button className='addquestion-back-btn' onClick={handleClickBack}>{`< Back`}</button>
                     <button className='addquestion-save-btn' onClick={handleClickSave}>Save</button>
                 </div>
             </div>
