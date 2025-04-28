@@ -4,8 +4,8 @@ import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 
-const LeafletMap = ({ location, openModal, setSelectedPlace }) => {
-    const position = [51.505, -0.09];
+const LeafletMap = ({ location, openModal, fetchAllQuizzez }) => {
+    const position = [10, 2];
     const [zoom, setzoom] = useState(13);
 
     useEffect(() => {
@@ -18,10 +18,13 @@ const LeafletMap = ({ location, openModal, setSelectedPlace }) => {
         return () => window.removeEventListener("resize", handleResize);
     }, [])
 
-    const handleStartQuiz = (place) => {
-        setSelectedPlace(place)
-        openModal();
+    const handleStartQuiz = async (placeid) => {
+        await fetchAllQuizzez(placeid);
+        setTimeout(() => {
+            openModal();
+        }, 500);
     }
+
 
     return (
         <div className='leaflet-map'>
@@ -34,11 +37,11 @@ const LeafletMap = ({ location, openModal, setSelectedPlace }) => {
                 {
                     location.map((place, index) =>
                     (
-                        <Marker key={index} position={place.directions}>
+                        <Marker key={index} position={[place.latitude, place.longitude]}>
                             <Popup>
                                 <div className='popup-heading'>{place.name}</div>
                                 <div className='paragraph'>{place.description}</div>
-                                <button className='popup-btn' onClick={() => handleStartQuiz(place)}>Start Quiz</button>
+                                <button className='popup-btn' onClick={() => handleStartQuiz(place._id)}>Start Quiz</button>
                             </Popup>
                         </Marker>
                     )

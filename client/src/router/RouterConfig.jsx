@@ -7,7 +7,7 @@ import NotFound from '../pages/common/NotFound/NotFound.jsx';
 const routes = [
     //admin
     { path: "/admin/login", element: <Login />, protected: false, authRedirect: true },
-    { path: "/admin/dashboard", element: <Dashboard />, protected: false, authRedirect: true },
+    { path: "/admin/dashboard", element: <Dashboard />, protected: true, authRedirect: false },
 
     //common
     { path: "/", element: <Home />, protected: false, authRedirect: false },

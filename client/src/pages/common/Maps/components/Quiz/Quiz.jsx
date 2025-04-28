@@ -4,7 +4,7 @@ import { message } from 'antd';
 import Pass from '../Pass/Pass';
 import Failed from '../Failed/Failed';
 
-const Quiz = ({ quiz, setIsOpen }) => {
+const Quiz = ({ quiz, setIsOpen, question }) => {
     const [index, setIndex] = useState(0);
     const [selected, setSelected] = useState({});
     const [score, setScore] = useState(0)
@@ -14,8 +14,8 @@ const Quiz = ({ quiz, setIsOpen }) => {
 
 
     const handleClickNext = () => {
-        if (selected[quiz.questions[index].id] !== undefined) {
-            if (index < quiz.questions.length - 1) {
+        if (selected[question[index]._id] !== undefined) {
+            if (index < question.length - 1) {
                 setIndex((previndex) => previndex + 1);
             }
         } else {
@@ -24,12 +24,12 @@ const Quiz = ({ quiz, setIsOpen }) => {
     }
 
     const handleFinish = () => {
-        if (selected[quiz.questions[index].id] === undefined) {
+        if (selected[question[index]._id] === undefined) {
             message.error("Please select an option!", 1);
             return;
         }
 
-        if (index < quiz.questions.length - 1) {
+        if (index < question.length - 1) {
             handleClickNext();
         } else {
             setIsFinished(true);
@@ -44,7 +44,7 @@ const Quiz = ({ quiz, setIsOpen }) => {
 
     const handleclickoption = (questionid, option) => {
         const prevOption = selected[questionid];
-        const correctAnswer = quiz.questions[index].correctOption;
+        const correctAnswer = question[index].correctOption;
 
         setSelected({
             ...selected,
@@ -63,11 +63,12 @@ const Quiz = ({ quiz, setIsOpen }) => {
 
 
     const calculateProgress = () => {
-        return ((index + 1) / quiz.totalQuestions) * 100 + '%';
+        const totalQuestions = question.length
+        return ((index + 1) / totalQuestions) * 100 + '%';
     };
 
     const questionTimer = () => {
-        let totalTime = quiz.totalTime;
+        let totalTime = quiz.time;
         setTimeLeft(totalTime);
         setIsTimeUp(true);
         const interval = setInterval(() => {
@@ -108,29 +109,32 @@ const Quiz = ({ quiz, setIsOpen }) => {
 
     return isFinished ? (
         score >= quiz.passingMarks ? (
-            <Pass score={score} setScore={setScore} setIsFinished={setIsFinished} setIsOpen={setIsOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} />
+            <Pass score={score} setScore={setScore} setIsFinished={setIsFinished} setIsOpen={setIsOpen} name={quiz.title} totalQuestions={question.length} />
         ) : (
-            <Failed score={score} setIsOpen={setIsOpen} name={quiz.name} totalQuestions={quiz.totalQuestions} retry={retry} />
+            <Failed score={score} setIsOpen={setIsOpen} name={quiz.title} totalQuestions={question.length} retry={retry} setIsFinished={setIsFinished} setScore={setScore} />
         )
     ) : (
         <div className='Quiz'>
             <div className='heading h-1'>Quiz</div>
-            <div className='heading h-2'>{quiz.name}</div>
+            <div className='heading h-2'>{quiz.title}</div>
             <div className='loading-bar'>
-                <div className='counter' style={{ width: calculateProgress() }}> {index + 1}/{quiz.totalQuestions}</div>
+                <div className='counter' style={{ width: calculateProgress() }}>{`Question ${index + 1}/${question.length}`}</div>
             </div>
 
             <div className='timer'>{formatTime()}</div>
 
-
             <div className='question'>
                 {
                     <>
-                        <div className="question-content" key={quiz.questions[index].id}>{quiz.questions[index].title}</div>
+                        <div className="question-content">
+                            {question[index].questionText}
+                        </div>
+
+
                         <div className='options-div'>
-                            {Object.entries(quiz.questions[index].options).map(([key, value]) => (
-                                <button key={key} className={`options ${selected[quiz.questions[index].id] === key ? 'selected' : ''}`}
-                                    onClick={() => handleclickoption(quiz.questions[index].id, key)}
+                            {Object.entries(question[index].options).map(([key, value]) => (
+                                <button key={key} className={`options ${selected[question[index]._id] === key ? 'selected' : ''}`}
+                                    onClick={() => handleclickoption(question[index]._id, key)}
                                 >
                                     {value}
                                 </button>
