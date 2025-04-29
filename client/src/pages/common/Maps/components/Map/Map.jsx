@@ -9,11 +9,9 @@ import quizService from '../../../../../services/quizService'
 import questionService from '../../../../../services/questionService'
 import CustomModal from '../../../../../components/CustomModal/CustomModal'
 
-
 const Map = () => {
-
     const [isOpen, setIsOpen] = useState(false);
-    const [location, setLocation] = useState([]);
+    const [locations, setLocations] = useState([]);
     const [quizzez, setQuizzez] = useState([]);
     const [questions, setQuestions] = useState([]);
 
@@ -22,7 +20,7 @@ const Map = () => {
         try {
             const response = await placeService.getAllPlaces();
             console.log("response", response);
-            setLocation(response.places);
+            setLocations(response.places);
         } catch (error) {
             console.log("error", error);
         }
@@ -49,8 +47,7 @@ const Map = () => {
                 console.log("error", error);
             }
         }
-    }
-
+    };
 
     useEffect(() => {
         fetchLocations();
@@ -79,7 +76,7 @@ const Map = () => {
             <div className='heading'>Maps</div>
             <div className='paragraph'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
 
-            <LeafletMap location={location} openModal={openModal} fetchAllQuizzez={fetchAllQuizzez} />
+            <LeafletMap locations={locations} openModal={openModal} fetchAllQuizzez={fetchAllQuizzez} />
 
             {quizzez.length > 0 && questions.length > 0 ? (
                 <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Quiz">

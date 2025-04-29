@@ -3,9 +3,8 @@ import './LeafletMap.css';
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
-
-const LeafletMap = ({ location, openModal, fetchAllQuizzez }) => {
-    const position = [10, 2];
+const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
+    const position = [16.9931, 54.7028];
     const [zoom, setzoom] = useState(13);
 
     useEffect(() => {
@@ -16,26 +15,25 @@ const LeafletMap = ({ location, openModal, fetchAllQuizzez }) => {
         window.addEventListener("resize", handleResize);
 
         return () => window.removeEventListener("resize", handleResize);
-    }, [])
+    }, []);
 
     const handleStartQuiz = async (placeid) => {
         await fetchAllQuizzez(placeid);
         setTimeout(() => {
             openModal();
         }, 500);
-    }
-
+    };
 
     return (
         <div className='leaflet-map'>
-            <MapContainer center={position} zoom={zoom} scrollWheelZoom={false}>
+            <MapContainer center={position} zoom={zoom}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
                 {
-                    location.map((place, index) =>
+                    locations.map((place, index) =>
                     (
                         <Marker key={index} position={[place.latitude, place.longitude]}>
                             <Popup>
