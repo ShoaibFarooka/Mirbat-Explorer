@@ -1,0 +1,114 @@
+.pass {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 254px;
+    box-shadow: 0px 0px 120.1px 15px #152D66B2 inset;
+    background: #FFFFFF;
+}
+
+
+.pass .heading {
+    color: var(--primary-color-1);
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.pass .location {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--primary-color-1);
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 3rem;
+
+}
+
+.pass .congrats {
+    margin-top: 20px;
+    color: var(--primary-color-1);
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 3rem;
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.pass .your-score {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--primary-color-1);
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 3rem;
+}
+
+.pass .score {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--primary-color-1);
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 3rem;
+    color: green;
+}
+
+.pass .done-btn {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding: 10px 40px;
+    font-size: 1.5rem;
+}
+
+@media only screen and (max-width:1207px) {
+    .pass {
+        padding: 0 200px;
+    }
+
+    .pass .congrats {
+        text-wrap: wrap;
+    }
+}
+
+
+@media only screen and (max-width:777px) {
+    .pass {
+        max-width: 700px;
+        padding: 0 150px;
+        border-radius: 60px;
+    }
+
+    .pass .congrats {
+        text-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .pass {
+        max-width: 500px;
+        padding: 0 100px;
+        border-radius: 40px;
+    }
+
+    .pass .congrats {
+        text-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width:400px) {
+    .pass {
+        max-width: 350px;
+        padding: 100px;
+        border-radius: 40px;
+    }
+
+    .pass .congrats {
+        text-wrap: wrap;
+    }
+}

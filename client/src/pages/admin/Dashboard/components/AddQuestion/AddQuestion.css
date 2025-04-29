@@ -1,0 +1,216 @@
+.addquestion {
+    display: flex;
+    flex-direction: column;
+    padding: 0 137px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 120px 15px #152D66B2 inset;
+}
+
+.addquestion .h1 {
+    color: var(--primary-color-1);
+    font-size: 2rem;
+    margin-top: 48px;
+}
+
+.addquestion .error {
+    margin-top: 10px;
+    font-family: var(--text-font);
+    font-weight: var(--text-font);
+    color: red;
+    font-size: 1.5rem;
+    margin-left: 10px;
+}
+
+.addquestion .form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.addquestion .form label {
+    font-size: 1.5rem;
+    font-family: var(--heading-font);
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+    padding-left: 15px;
+}
+
+.addquestion .form input {
+    padding: 15px 20px;
+    background: #D9D9D9;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+}
+
+.addquestion .form input::placeholder {
+    font-family: var(--text-font);
+    font-weight: var(--text-font-weight);
+    font-size: var(--text-font-size);
+}
+
+.addquestion .form .options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.addquestion .form .options .container-1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.addquestion .form .options .container-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.addquestion .form .options .container-1 .optionB {
+    margin-top: 20px;
+}
+
+
+.addquestion .form .options .container-2 .optionD {
+    margin-top: 20px;
+}
+
+.addquestion .form .correct-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.addquestion .form .correct-option .heading {
+    color: var(--primary-color-1);
+    font-family: var(--text-font);
+    font-weight: var(--heading-font-weight);
+    font-size: var(--text-font-size);
+}
+
+
+
+.custom-select .ant-select-selector {
+    color: var(--primary-color-1);
+    font-family: var(--text-font);
+    font-weight: var(--heading-font-weight);
+    font-size: var(--text-font-size);
+    border-radius: 10px;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: all 0.2s ease;
+}
+
+.custom-select.ant-select-focused .ant-select-selector {
+    border-color: var(--primary-color-1) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.custom-select:hover .ant-select-selector {
+    border-color: var(--primary-color-1) !important;
+    box-shadow: none !important;
+}
+
+.custom-dropdown .ant-select-item-option {
+    border: 1px solid var(--primary-color-1);
+    font-weight: bold;
+    color: var(--primary-color-1);
+    background-color: #fff;
+}
+
+
+.custom-dropdown .ant-select-item-option-active {
+    background-color: #ecf0f1;
+}
+
+.custom-dropdown .ant-select-item-option-selected {
+    background-color: #dfe6e9;
+}
+
+.addquestion .addquestion-save {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+
+.addquestion .addquestion-save .addquestion-save-btn {
+    border: none;
+    border-radius: 30px;
+    padding: 10px 40px;
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: var(--heading-font-weight);
+    color: var(--primary-color-1);
+    background-color: var(--secondary-color-2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.addquestion .addquestion-save .addquestion-save-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.addquestion .addquestion-save .addquestion-back-btn {
+    font-family: var(--text-font);
+    font-weight: var(--heading-font-weight);
+    font-size: 1.5rem;
+    color: var(--primary-color-1);
+    background-color: var(--secondary-color-2);
+    border: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.addquestion .addquestion-save .addquestion-back-btn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width:900px) {
+    .addquestion {
+        padding: 70px;
+    }
+}
+
+@media only screen and (max-width:680px) {
+    .addquestion {
+        padding: 30px;
+    }
+}
+
+@media only screen and (max-width:550px) {
+    .addquestion .h1 {
+        text-align: center;
+    }
+
+    .addquestion .form .options {
+        flex-direction: column;
+    }
+
+    .addquestion .form .correct-option {
+        align-items: center;
+    }
+
+    .addquestion .form .options .container-2 .optionC {
+        margin-top: 20px;
+    }
+
+    .addquestion .addquestion-save {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .addquestion .addquestion-save .addquestion-back-btn {
+        order: 2;
+    }
+}

@@ -24,7 +24,9 @@ const CustomModal = ({ isOpen, onRequestClose, contentLabel, children, width = '
             <div className='cross-icon-container' onClick={onRequestClose}>
                 <CrossIcon className='cross-icon' />
             </div>
-            {children}
+            {isOpen &&
+                <div className='modal-content'>{children}</div>
+            }
         </Modal>
     );
 };

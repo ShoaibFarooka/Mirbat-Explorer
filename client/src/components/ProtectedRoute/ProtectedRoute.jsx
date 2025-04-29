@@ -1,10 +1,15 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { isAuthenticated } from "../../utilis/authutills";
 
-const ProtectedRoute = ({ children, isProtected }) => {
-    const isAdmin = false; // can replace it with admin check logic 
+const ProtectedRoute = ({ children }) => {
+    const isLoggedIn = isAuthenticated();
 
-    return isProtected && !isAdmin ? <Navigate to="/" replace /> : children;
+    if (!isLoggedIn) {
+        return <Navigate to="/admin/login" replace />
+    }
+
+    return children;
 };
 
 export default ProtectedRoute;

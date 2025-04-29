@@ -7,7 +7,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--primary-color-1);
+  /* background-color: var(--primary-color-1); */
 }
 
 html {
@@ -137,7 +137,6 @@ html {
 
 }
 
-
 .done-btn {
   margin-top: 74px;
   padding: 20px 30px;
@@ -156,4 +155,16 @@ html {
 .done-btn:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
