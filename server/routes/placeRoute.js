@@ -6,8 +6,8 @@ const validationMiddleware = require("../middleware/validationMiddleware");
 
 router.get(
     "/get-all-places",
-    authMiddleware.authenticateRequest,
-    authMiddleware.verifyRole(["admin"]),
+    // authMiddleware.authenticateRequest,
+    // authMiddleware.verifyRole(["admin"]),
     controller.GetAllPlaces
 );
 

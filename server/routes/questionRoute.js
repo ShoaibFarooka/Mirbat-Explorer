@@ -7,8 +7,8 @@ const validationMiddleware = require("../middleware/validationMiddleware");
 
 router.get(
     "/get-all-questions/:quizId",
-    authMiddleware.authenticateRequest,
-    authMiddleware.verifyRole(["admin"]),
+    // authMiddleware.authenticateRequest,
+    // authMiddleware.verifyRole(["admin"]),
     validationMiddleware.validateParams(quizSchemas.quizIdSchema),
     controller.GetAllQuestions
 );
