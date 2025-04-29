@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
 const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
-    const position = [16.9931, 54.7028];
+    const position = [-0.5, 29.2];
     const [zoom, setzoom] = useState(13);
 
     useEffect(() => {

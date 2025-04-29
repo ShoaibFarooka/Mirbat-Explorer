@@ -63,6 +63,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
 
     const handleOpenAddQuestion = () => {
         handleCloseEditQuiz();
+        handleCloseEditPlace();
         setTimeout(() => {
             setIsOpenAddQuestion(true);
         }, 300);
@@ -76,6 +77,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
     }
 
     const handleOpenEditQuestion = (question) => {
+        handleCloseEditPlace();
         handleCloseEditQuiz();
         setSelectedQuestion(question);
         setTimeout(() => {
@@ -85,9 +87,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
 
     const handleCloseEditQuestion = () => {
         setIsOpenEditQuestion(false);
-        setTimeout(() => {
-            setIsOpenEditQuiz(true);
-        }, 300);
+        setIsOpenEditQuiz(true);
     }
 
     const handleDeletePlace = async (id) => {
