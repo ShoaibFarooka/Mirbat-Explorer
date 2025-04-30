@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './LeafletMap.css';
 import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
+import ReactGA from 'react-ga4';
 
 const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
     const position = [16.9930697, 54.7027669];
@@ -17,7 +18,13 @@ const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const handleStartQuiz = async (placeid) => {
+    const handleStartQuiz = async (placeid, placeName) => {
+        ReactGA.event({
+            category: 'User',
+            action: 'click',
+            label: "Start Quiz Button",
+            place_name: placeName
+        });
         await fetchAllQuizzez(placeid);
         setTimeout(() => {
             openModal();
@@ -39,7 +46,7 @@ const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
                             <Popup>
                                 <div className='popup-heading'>{place.name}</div>
                                 <div className='paragraph'>{place.description}</div>
-                                <button className='popup-btn' onClick={() => handleStartQuiz(place._id)}>Start Quiz</button>
+                                <button className='popup-btn' onClick={() => handleStartQuiz(place._id, place.name)}>Start Quiz</button>
                             </Popup>
                         </Marker>
                     )
