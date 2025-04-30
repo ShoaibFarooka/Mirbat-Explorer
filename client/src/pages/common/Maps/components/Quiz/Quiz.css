@@ -156,7 +156,6 @@
 @media only screen and (max-width:1030px) {
     .Quiz {
         width: 900px;
-        border-radius: 80px;
     }
 
     .Quiz .loading-bar {
@@ -184,7 +183,6 @@
 @media only screen and (max-width:770px) {
     .Quiz {
         width: 700px;
-        border-radius: 70px;
     }
 
     .Quiz .loading-bar {
@@ -217,7 +215,6 @@
 @media only screen and (max-width:500px) {
     .Quiz {
         width: 380px;
-        border-radius: 40px;
     }
 
     .Quiz .loading-bar {
