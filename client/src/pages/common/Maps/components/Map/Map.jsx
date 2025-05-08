@@ -78,12 +78,10 @@ const Map = () => {
 
             <LeafletMap locations={locations} openModal={openModal} fetchAllQuizzez={fetchAllQuizzez} />
 
-            {quizzez.length > 0 && questions.length > 0 ? (
+            {quizzez.length > 0 && questions.length > 0 && (
                 <CustomModal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Quiz">
                     <Quiz quiz={quizzez[0]} question={questions} setIsOpen={setIsOpen} />
                 </CustomModal>
-            ) : (
-                <div>Loading quiz...</div>
             )}
             <div className='heading heading-2'>Popular Locations in Mirbat.</div>
             <div className="places">

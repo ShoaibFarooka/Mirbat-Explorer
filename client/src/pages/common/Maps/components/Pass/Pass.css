@@ -81,7 +81,6 @@
     .pass {
         max-width: 700px;
         padding: 0 150px;
-        border-radius: 60px;
     }
 
     .pass .congrats {
@@ -93,7 +92,6 @@
     .pass {
         max-width: 500px;
         padding: 0 100px;
-        border-radius: 40px;
     }
 
     .pass .congrats {
@@ -105,7 +103,6 @@
     .pass {
         max-width: 350px;
         padding: 100px;
-        border-radius: 40px;
     }
 
     .pass .congrats {
