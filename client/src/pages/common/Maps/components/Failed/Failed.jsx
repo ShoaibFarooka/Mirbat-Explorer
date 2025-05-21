@@ -14,8 +14,9 @@ const Failed = ({ score, setIsOpen, name, totalQuestions, retry, setIsFinished, 
         <div className='fail'>
             <div className='heading'>Quiz</div>
             <div className='location'>{name}</div>
-            <div className='failed'> You Failed
-                Quiz has been completed</div>
+            <div className='failed'> Not quite there yet
+                 give it another try
+                </div>
             <div className='your-score'>Your Score</div>
             <div className='score'>{`${score}/${totalQuestions}`}</div>
             <div className='btns'>

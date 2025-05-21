@@ -34,10 +34,10 @@ const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
     return (
         <div className='leaflet-map'>
             <MapContainer center={position} zoom={zoom} scrollWheelZoom={false}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
+            <TileLayer
+                attribution='Tiles © Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            />
 
                 {
                     locations.map((place, index) =>
@@ -46,7 +46,29 @@ const LeafletMap = ({ locations, openModal, fetchAllQuizzez }) => {
                             <Popup>
                                 <div className='popup-heading'>{place.name}</div>
                                 <div className='paragraph'>{place.description}</div>
-                                <button className='popup-btn' onClick={() => handleStartQuiz(place._id, place.name)}>Start Quiz</button>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                                {place.videoUrl && (
+                                    <button
+                                    className='popup-btn'
+                                    style={{ marginTop: '8px' }}
+                                    onClick={() => {
+                                        window.open(
+                                        place.videoUrl,
+                                        'VideoPopup',
+                                        'width=800,height=450,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=yes'
+                                        );
+                                    }}
+                                    >
+                                    Watch Video
+                                    </button>
+
+                                )}
+                                </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                               <button className='popup-btn' onClick={() => handleStartQuiz(place._id, place.name)}>Test your knowledge</button>
+                            </div>
+
+                       
                             </Popup>
                         </Marker>
                     )

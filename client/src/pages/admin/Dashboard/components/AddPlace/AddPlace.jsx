@@ -11,6 +11,7 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
         description: "",
         longitude: "",
         latitude: "",
+        videoUrl: "",
     });
 
     const [error, setError] = useState({
@@ -18,6 +19,7 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
         description: "",
         longitude: "",
         latitude: "",
+        videoUrl: "",
     });
 
     const handleOnChange = (e) => {
@@ -100,7 +102,7 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
                 <input type="text" name='name' placeholder='Place name' value={formData.name} onChange={handleOnChange} />
                 {error.name && <span className='error'>{error.name}</span>}
                 <label htmlFor="description" className='label description'>Description</label>
-                <input type="text" name='description' placeholder='Description' value={formData.description} onChange={handleOnChange} />
+                <textarea classname="input" name='description' placeholder='Description' value={formData.description} onChange={handleOnChange} rows={5} />
                 {error.description && <span className='error'>{error.description}</span>}
                 <div className='position'>
                     <div className='longitude'>
@@ -114,6 +116,11 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
                         {error.latitude && <span className='error'>{error.latitude}</span>}
                     </div>
                 </div>
+
+                <label htmlFor="videoUrl" className='label'>Video URL (optional)</label>
+                <input type="text" name='videoUrl' placeholder='https://example.com/video' value={formData.videoUrl} onChange={handleOnChange}/>
+                {error.videoUrl && <span className="error">{error.videoUrl}</span>}
+
             </div>
 
             <div className='save'><button className='save-btn' onClick={handleClickSave}>Save</button></div>

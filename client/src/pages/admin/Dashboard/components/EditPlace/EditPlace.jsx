@@ -15,12 +15,14 @@ const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpen
         description: placeData?.description || "",
         longitude: placeData?.longitude || "",
         latitude: placeData?.latitude || "",
+        videoUrl: placeData?.videoUrl || "",
     });
     const [error, setError] = useState({
         name: "",
         description: "",
         longitude: "",
         latitude: "",
+        videoUrl: "",
     });
 
     const handleOnChange = (e) => {
@@ -168,6 +170,13 @@ const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpen
 
                     </div>
                 </div>
+                <label htmlFor="videoUrl" className="label">Video URL (optional)</label>
+                <input
+                    type="text"
+                    name="videoUrl"
+                    placeholder="https://example.com"
+                    value={formData.videoUrl}
+                    onChange={handleOnChange} />
             </div>
 
             <div className='quiz-save'>

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import './Pass.css'
 import Confetti from '../../../../../components/Confetti/Confetti'
+
 const Pass = ({ score, setScore, setIsFinished, setIsOpen, name, totalQuestions }) => {
 
     const passref = useRef(null);
@@ -20,8 +21,9 @@ const Pass = ({ score, setScore, setIsFinished, setIsOpen, name, totalQuestions 
             <div className='your-score'>Your Score</div>
             <div className='score'>{`${score}/${totalQuestions}`}</div>
             <button className='done-btn' onClick={handleClickDone}>Done</button>
+            </div>
 
-        </div>
+        
     )
 }
 

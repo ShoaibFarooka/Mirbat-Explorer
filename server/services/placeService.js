@@ -11,12 +11,13 @@ const getAllPlaces = async () => {
 };
 
 const addPlace = async (data) => {
-    const { name, description, longitude, latitude } = data;
+    const { name, description, longitude, latitude, videoUrl } = data;
     const place = await Place.create({
         name,
         description,
         longitude,
         latitude,
+        videoUrl,
     });
 
     return place;
@@ -24,7 +25,7 @@ const addPlace = async (data) => {
 
 
 const updatePlace = async (placeId, data) => {
-    const { name, description, longitude, latitude } = data;
+    const { name, description, longitude, latitude, videoUrl } = data;
     const place = await Place.findById(placeId);
     if (!place) {
         const error = new Error("Place not found!");
@@ -35,7 +36,7 @@ const updatePlace = async (placeId, data) => {
     place.description = description;
     place.longitude = longitude;
     place.latitude = latitude;
-
+    place.videoUrl = videoUrl;
     const updatedPlace = await place.save();
 
     return updatedPlace;

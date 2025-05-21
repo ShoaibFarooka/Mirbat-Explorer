@@ -115,7 +115,7 @@ const Quiz = ({ quiz, setIsOpen, question }) => {
         )
     ) : (
         <div className='Quiz'>
-            <div className='heading h-1'>Quiz</div>
+            <div className='heading h-1'>Test Your Knowledge </div>
             <div className='heading h-2'>{quiz.title}</div>
             <div className='loading-bar'>
                 <div className='counter' style={{ width: calculateProgress() }}>{`Question ${index + 1}/${question.length}`}</div>

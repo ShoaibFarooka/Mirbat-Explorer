@@ -20,6 +20,13 @@ const placeSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        videoUrl: {
+            type: String,
+            default:null,
+        }
+
+
+
     },
     { timestamps: true }
 );

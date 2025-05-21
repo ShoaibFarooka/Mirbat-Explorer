@@ -20,6 +20,7 @@ const addPlaceSchema = yup.object().shape({
         .min(-90, "Latitude must be between -90 and 90")
         .max(90, "Latitude must be between -90 and 90")
         .required("Latitude is required"),
+    videoUrl: yup.string().url("Must be valid video URL").nullable().trim(),
 });
 
 const updatePlaceSchema = yup.object().shape({
@@ -37,6 +38,8 @@ const updatePlaceSchema = yup.object().shape({
         .min(-90, "Latitude must be between -90 and 90")
         .max(90, "Latitude must be between -90 and 90")
         .required("Latitude is required"),
+    videoUrl: yup.string().url("Must be valid video URL").nullable().trim(),
+
 });
 
 const placeIdSchema = yup.object().shape({
