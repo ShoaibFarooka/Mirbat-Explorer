@@ -1,0 +1,42 @@
+.e-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 120px 15px #152D66B2 inset;
+}
+
+.e-form .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.e-form .email-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.e-form .email-input {
+    padding: 1rem;
+    font-size: var(--text-font-size);
+    font-family: var(--text-font);
+    border: 2px solid var(--secondary-color-2);
+    border-radius: 8px;
+    outline: none;
+    background-color: #fff;
+    color: var(--primary-color-1);
+}
+
+.e-form .email-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.e-form .email-error {
+    color: red;
+}

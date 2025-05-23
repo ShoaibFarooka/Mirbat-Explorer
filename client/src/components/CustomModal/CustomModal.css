@@ -12,6 +12,10 @@
     scrollbar-width: none;
 }
 
+.modal:focus {
+    outline: none;
+}
+
 .modal::-webkit-scrollbar {
     display: none;
 }

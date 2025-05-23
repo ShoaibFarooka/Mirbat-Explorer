@@ -43,7 +43,15 @@ const userService = {
     } catch (error) {
       throw error;
     }
-  }
+  },
+  addLead: async (payload) => {
+    try {
+      const response = await axiosInstance.post(`${BASE_URL}/add-lead`, payload);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default userService;

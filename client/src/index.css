@@ -113,6 +113,11 @@ html {
   background-color: var(--secondary-color-2);
   color: var(--primary-color-1);
   font-weight: var(--heading-font-weight);
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
 }
 
 

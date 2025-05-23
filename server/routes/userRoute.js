@@ -26,4 +26,10 @@ router.get(
   controller.FetchUserInfo
 );
 
+router.post(
+  "/add-lead",
+  validationMiddleware.validateBody(userSchemas.addLeadSchema),
+  controller.AddLead
+);
+
 module.exports = router;
