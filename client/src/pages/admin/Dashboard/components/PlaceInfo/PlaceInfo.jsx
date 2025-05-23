@@ -94,6 +94,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
         try {
             const response = await placeService.deletePlace(id);
             console.log('response', response);
+            message.success("Place deleted successfully!");
             fetchAllPlaces();
         } catch (error) {
             message.error("failed an error occured");
@@ -114,7 +115,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
                 console.log("error", error);
             }
         }
-    }
+    };
 
     const fetchAllQuestions = async () => {
         try {
@@ -130,9 +131,7 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
                 message.error("Server Error!");
             }
         }
-    }
-
-
+    };
 
     return (
         <div className='places-info'>
@@ -144,6 +143,18 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
                 <button className='edit-btn' onClick={handleOpenEditPlace}>
                     <img src={edit} alt="" />
                 </button>
+                <Popconfirm
+                    title="Delete the place"
+                    description="Are you sure to delete this place?"
+                    onConfirm={() => handleDeletePlace(data._id)}
+                    onCancel={() => { }}
+                    okText="Yes"
+                    cancelText="No"
+                >
+                    <button className='delete-btn'>
+                        <img src={del} alt="delete" />
+                    </button>
+                </Popconfirm>
 
 
                 <CustomModal isOpen={isEditPlaceOpen} onRequestClose={handleCloseEditPlace} contentLabel={"Edit Place"}>
@@ -184,19 +195,6 @@ const PlaceInfo = ({ data, fetchAllPlaces }) => {
                     />
                 </CustomModal>
 
-
-                <Popconfirm
-                    title="Delete the task"
-                    description="Are you sure to delete this task?"
-                    onConfirm={() => handleDeletePlace(data._id)}
-                    onCancel={() => { }}
-                    okText="Yes"
-                    cancelText="No"
-                >
-                    <button className='delete-btn'>
-                        <img src={del} alt="delete" />
-                    </button>
-                </Popconfirm>
             </div>
         </div>
     )

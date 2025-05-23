@@ -12,7 +12,8 @@ const GetAllPlaces = async (req, res, next) => {
 const AddPlace = async (req, res, next) => {
     try {
         const data = { ...req.body };
-        const place = await placeService.addPlace(data);
+        const imageUrl = req.file.path;
+        const place = await placeService.addPlace({ ...data, imageUrl });
         res.status(201).json({ message: "Place added successfully" });
     } catch (error) {
         next(error);
@@ -23,7 +24,8 @@ const UpdatePlace = async (req, res, next) => {
     try {
         const { placeId } = req.params;
         const data = { ...req.body };
-        const updatedPlace = await placeService.updatePlace(placeId, data);
+        const imageUrl = req.file?.path || null;
+        const updatedPlace = await placeService.updatePlace(placeId, { ...data, imageUrl });
         res.status(200).json({ message: "Place updated successfully" });
     } catch (error) {
         next(error);

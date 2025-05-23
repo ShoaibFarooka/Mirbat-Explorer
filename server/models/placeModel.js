@@ -22,10 +22,12 @@ const placeSchema = new mongoose.Schema(
         },
         videoUrl: {
             type: String,
-            default:null,
-        }
-
-
+            default: null,
+        },
+        imageUrl: {
+            type: String,
+            required: true,
+        },
 
     },
     { timestamps: true }

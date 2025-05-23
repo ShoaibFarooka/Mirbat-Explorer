@@ -16,6 +16,7 @@ const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpen
         longitude: placeData?.longitude || "",
         latitude: placeData?.latitude || "",
         videoUrl: placeData?.videoUrl || "",
+        image: placeData?.imageUrl || null
     });
     const [error, setError] = useState({
         name: "",
@@ -23,14 +24,23 @@ const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpen
         longitude: "",
         latitude: "",
         videoUrl: "",
+        image: ""
     });
+    const [preview, setPreview] = useState(null);
 
     const handleOnChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        const file = e.target.files?.[0];
+
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
-        })
-    }
+            [name]: name === "image" ? file || null : value
+        });
+        if (name === "image") {
+            setPreview(file ? URL.createObjectURL(file) : null);
+        }
+    };
 
     const isValidateLatitude = (lat) => lat >= -90 && lat <= 90;
     const isValidateLongitude = (lon) => lon >= -180 && lon <= 180;
@@ -76,21 +86,35 @@ const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpen
         } else {
             newerror.latitude = "";
         }
+        if (!formData.image) {
+            newerror.image = "Image is required!";
+            haserrors = true;
+        } else if (preview && !formData.image.type.startsWith("image/")) {
+            newerror.image = "Only image files are allowed!";
+            haserrors = true;
+        } else {
+            newerror.image = "";
+        }
         setError((prev) => ({ ...prev, ...newerror }));
         return !haserrors;
-    }
+    };
 
-    const handleUpdatePlace = async (id, data) => {
+    const handleUpdatePlace = async (id) => {
         if (!validateData()) {
             return;
         }
-        const updatedata = {
-            ...data,
-            longitude: parseFloat(data.longitude),
-            latitude: parseFloat(data.latitude)
-        }
         try {
-            const response = await placeService.updatePlace(id, updatedata);
+            const dataToSend = new FormData;
+            dataToSend.append("name", formData.name);
+            dataToSend.append("description", formData.description);
+            dataToSend.append("longitude", formData.longitude);
+            dataToSend.append("latitude", formData.latitude);
+            dataToSend.append("videoUrl", formData.videoUrl);
+            if (formData.image instanceof File) {
+                dataToSend.append("image", formData.image);
+            }
+
+            const response = await placeService.updatePlace(id, dataToSend);
             console.log('response', response);
             message.success("Place Updated Sucessfully!");
             handleCloseEditPlace();
@@ -177,13 +201,32 @@ const EditPlace = ({ placeData, fetchAllPlaces, handleCloseEditPlace, handleOpen
                     placeholder="https://example.com"
                     value={formData.videoUrl}
                     onChange={handleOnChange} />
+                {error.videoUrl && <span className="error">{error.videoUrl}</span>}
+
+                <label htmlFor="image" className='label'>Image</label>
+                <input type="file" accept="image/*" name='image' onChange={handleOnChange} />
+                {error.image && <span className="error">{error.image}</span>}
+                {preview ?
+                    <div>
+                        <p>Preview:</p>
+                        <img src={preview} alt="Preview" style={{ width: 200 }} />
+                    </div>
+                    :
+                    formData.image ?
+                        <div>
+                            <p>Preview:</p>
+                            <img src={import.meta.env.VITE_BASE_URL + '/' + formData.image} crossorigin="anonymous" alt="Preview" style={{ width: 200 }} />
+                        </div>
+                        :
+                        ''
+                }
             </div>
 
             <div className='quiz-save'>
                 <button className='back-btn' onClick={handleClickBack}>{`< Back`}</button>
                 <button
                     className='save-btn'
-                    onClick={() => handleUpdatePlace(placeData._id, formData)}>Save
+                    onClick={() => handleUpdatePlace(placeData._id)}>Save
                 </button>
 
             </div>

@@ -28,8 +28,8 @@ const updatePlaceSchema = yup.object().shape({
     description: yup.string().trim().required("Description is required"),
     longitude: yup
         .number()
-        .strict()
-        .typeError("Longitude must be a number")
+        // .strict()
+        // .typeError("Longitude must be a number")
         .min(-180, "Longitude must be between -180 and 180")
         .max(180, "Longitude must be between -180 and 180")
         .required("Longitude is required"),

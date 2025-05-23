@@ -12,6 +12,7 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
         longitude: "",
         latitude: "",
         videoUrl: "",
+        image: null
     });
 
     const [error, setError] = useState({
@@ -20,13 +21,22 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
         longitude: "",
         latitude: "",
         videoUrl: "",
+        image: ""
     });
+    const [preview, setPreview] = useState(null);
 
     const handleOnChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        const file = e.target.files?.[0];
+
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
-        })
+            [name]: name === "image" ? file || null : value
+        });
+        if (name === "image") {
+            setPreview(file ? URL.createObjectURL(file) : null);
+        }
     }
 
     const isValidateLatitude = (lat) => lat >= -90 && lat <= 90;
@@ -73,6 +83,15 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
         } else {
             newerror.latitude = "";
         }
+        if (!formData.image) {
+            newerror.image = "Image is required!";
+            haserrors = true;
+        } else if (!formData.image.type.startsWith("image/")) {
+            newerror.image = "Only image files are allowed!";
+            haserrors = true;
+        } else {
+            newerror.image = "";
+        }
         setError((prev) => ({ ...prev, ...newerror }));
         return !haserrors;
     }
@@ -83,7 +102,15 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
         if (!validateData()) {
             return;
         } try {
-            const response = await placeService.addPlace(formData);
+            const dataToSend = new FormData;
+            dataToSend.append("name", formData.name);
+            dataToSend.append("description", formData.description);
+            dataToSend.append("longitude", formData.longitude);
+            dataToSend.append("latitude", formData.latitude);
+            dataToSend.append("videoUrl", formData.videoUrl);
+            dataToSend.append("image", formData.image);
+
+            const response = await placeService.addPlace(dataToSend);
             console.log('response', response);
             message.success("Place added successfully!");
             fetchAllPlaces();
@@ -118,8 +145,18 @@ const AddPlace = ({ onRequestClose, fetchAllPlaces }) => {
                 </div>
 
                 <label htmlFor="videoUrl" className='label'>Video URL (optional)</label>
-                <input type="text" name='videoUrl' placeholder='https://example.com/video' value={formData.videoUrl} onChange={handleOnChange}/>
+                <input type="text" name='videoUrl' placeholder='https://example.com/video' value={formData.videoUrl} onChange={handleOnChange} />
                 {error.videoUrl && <span className="error">{error.videoUrl}</span>}
+
+                <label htmlFor="image" className='label'>Image</label>
+                <input type="file" accept="image/*" name='image' onChange={handleOnChange} />
+                {error.image && <span className="error">{error.image}</span>}
+                {preview && (
+                    <div>
+                        <p>Preview:</p>
+                        <img src={preview} alt="Preview" style={{ width: 200 }} />
+                    </div>
+                )}
 
             </div>
 
