@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 254px;
+    padding: 30px 30px;
     box-shadow: 0px 0px 120.1px 15px #152D66B2 inset;
     background: #FFFFFF;
 }
@@ -57,6 +57,11 @@
     font-weight: var(--heading-font-weight);
     font-size: 3rem;
     color: green;
+}
+
+.pass .btns {
+    display: flex;
+    gap: 20px;
 }
 
 .pass .done-btn {
