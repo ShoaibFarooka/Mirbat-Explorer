@@ -4,13 +4,13 @@ const cookieParser = require("cookie-parser");
 const cors = require('cors');
 const morgan = require('morgan');
 const chalk = require('chalk');
-const rateLimit = require("express-rate-limit");
 const helmet = require('helmet');
 const compression = require("compression");
 const allowedOrigins = require('./configs/allowedOrigins.config.json');
 require('dotenv').config({ path: "./configs/.env" });
 const connectDB = require("./configs/db.config");
 const routes = require('./routes/index');
+const apiRateLimiter = require('./middleware/rateLimiterMiddleware');
 const trimMiddleware = require('./middleware/trimMiddleware');
 const errorHandlerMiddleware = require('./middleware/errorHandlerMiddleware');
 const logger = require('./utils/logger');
@@ -61,15 +61,8 @@ app.get('/', (req, res) => {
     res.status(200).send('Mirbat Explorer Server is up!');
 });
 
-// Rate limiting
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-    message: "Too many requests from this IP, please try again later",
-});
-
 // Routes
-app.use("/api", limiter);
+app.use("/api", apiRateLimiter);
 app.use("/api", routes);
 
 //Error Handler
